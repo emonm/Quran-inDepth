@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorToolBar">#21583B</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="ThemeBackground">#ffffffff</color>
+    <color name="BgDarkColor">#4CAF50</color>
+    <color name="DarkPrimaryColor">#ff185d7a</color>
+    <color name="BgLightColor">#81C784</color>
+    <color name="ash">#F2F2F2</color>
+    <color name="PrimaryColor">#ff297797</color>
+    <color name="deep_ash">#636262</color>
+
+</resources>

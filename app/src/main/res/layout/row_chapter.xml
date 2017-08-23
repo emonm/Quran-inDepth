@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*">
+        <TableRow android:gravity="center_vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            >
+            <TextView
+                android:textSize="15dp"
+                android:gravity="center_vertical" 
+                android:id="@+id/ChapterNameEnTextView"
+                android:paddingLeft="5.0dip" 
+                android:paddingRight="10.0dip"
+                android:textColor="@color/colorToolBar"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content" 
+                android:layout_weight="0.5" />
+            <TextView 
+                android:textSize="18dp"
+                android:gravity="center_vertical" 
+                android:id="@+id/ChapterNameArTextView"
+                android:layout_width="0.0dip"
+                android:textColor="@color/colorToolBar"
+                android:layout_height="wrap_content" 
+                android:layout_weight="0.5"
+                />
+            <TextView 
+                android:textSize="13dp"
+                android:gravity="center|right" 
+                android:id="@+id/ChapterNoTextView"
+                android:paddingLeft="5.0dip"
+                android:paddingRight="7.0dip"
+                android:textColor="@color/colorToolBar"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content" 
+                android:singleLine="true" 
+                android:layout_weight="0.2" />
+        </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="4dp"
+        android:shrinkColumns="*"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5.0dip">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5.0dip"
+                    android:text="Revelation: "
+                    android:textColor="#767676"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/Revelation_number"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#767676"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rukus: "
+                    android:textColor="#767676"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/Rukus_number"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#767676"
+                    android:textSize="13dp" />
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5.0dip">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textColor="#767676"
+                android:layout_weight="1.0"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5.0dip"
+                    android:text="Verses: "
+                    android:textColor="#767676"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/VersesCountTextView"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#767676"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paras: "
+                    android:textColor="#767676"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/ParahsFallTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="xa"
+                    android:textColor="#767676"
+                    android:textSize="13dp" />
+
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5.0dip"
+                    android:textColor="#767676"
+                    android:text="Cum. Verses: "
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/CVersesCountTextView"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#767676"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textColor="#767676"
+                    android:text="Muqattaat: "
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/MuqattaatWordsTextView"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:textColor="#767676"
+                    android:paddingRight="7.0dip"
+                    android:textSize="14dp" />
+            </LinearLayout>
+        </TableRow>
+    </TableLayout>
+</LinearLayout>
