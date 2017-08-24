@@ -1,7 +1,6 @@
 package com.depth.quran.quran_indepth.activity.holder;
 
 
-
 import com.depth.quran.quran_indepth.activity.model.QuranListModel;
 
 import java.util.Vector;

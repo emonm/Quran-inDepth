@@ -14,51 +14,55 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden">
-
-        </activity>
-        <activity
-            android:name=".activity.activity.ExplorerActivity"
-            android:label="Explorer"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-            android:name=".activity.activity.QuranChapterActivity"
-            android:label="Quran Chapters"
-            android:theme="@style/AppTheme.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.activity.QuranDetailsActivity"
+        <activity
+            android:name=".activity.activity.ExplorerActivity"
+            android:label="Explorer"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.activity.QuranChapterActivity"
             android:label="Quran Chapters"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".activity.activity.QuranDictionaryActivity"
+        <activity
+            android:name=".activity.activity.QuranDetailsActivity"
+            android:label="Quran Chapters"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".activity.activity.QuranDictionaryActivity"
             android:label="Quran Dictionary"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".activity.activity.BookmarksActivity"
+        <activity
+            android:name=".activity.activity.BookmarksActivity"
             android:label="Bookmarks"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-        <activity android:name=".activity.activity.StartTourActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.activity.StartTourActivity"
             android:label="Start Tour"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>>
-        <activity android:name=".activity.activity.AboutActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        >
+        <activity
+            android:name=".activity.activity.AboutActivity"
             android:label="About"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.activity.SettingActivity"
+            android:label="Setting"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activity.activity.QuranChapterArabicActivity"
+            android:label="Arabic Details"
             android:theme="@style/AppTheme.NoActionBar">
 
-        </activity>
-        <activity android:name=".activity.activity.SettingActivity"
-            android:label="Setting"
-            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

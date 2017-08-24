@@ -1,6 +1,7 @@
 package com.depth.quran.quran_indepth.activity.activity;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,23 +14,66 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.depth.quran.quran_indepth.R;
+import com.depth.quran.quran_indepth.activity.adapter.abcd;
 import com.depth.quran.quran_indepth.activity.adapter.BaseAdpterList;
+import com.depth.quran.quran_indepth.activity.adapter.Wordlist;
+import com.depth.quran.quran_indepth.activity.adapter.expanda_adapter;
+import com.depth.quran.quran_indepth.activity.dbhelper.DataBaseHelper;
+import com.depth.quran.quran_indepth.activity.holder.AllLetters;
+import com.depth.quran.quran_indepth.activity.holder.AllLetters_detl;
+import com.depth.quran.quran_indepth.activity.holder.Allword;
+import com.depth.quran.quran_indepth.activity.holder.test;
+import com.depth.quran.quran_indepth.activity.model.ChapterListModel;
+import com.depth.quran.quran_indepth.activity.model.word_model;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Vector;
 
 public class QuranDictionaryActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,AdapterView.OnItemSelectedListener {
     ListView lv;
     BaseAdpterList baseAdpterList;
     ImageView facebookLink,youtubeLink,googlePluseLink,websiteLink;
+
+    DataBaseHelper dataBaseHelper;
+    Context mContext;
+    Vector<ChapterListModel>vc;
+    Vector<ChapterListModel>vc_ayat;
+    private String lete_id = "1";
+    ArrayList<String> ayatarbi;
+    ArrayAdapter<String> spin;
+    String select_ayat,calculatdata;
+
+    Wordlist wo;
+    Vector <word_model>vv;
+    ExpandableListView listView;
+    abcd abcd;
+    ArrayList< String >string=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quran_dictionay);
+        mContext=getApplicationContext();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        listView = (ExpandableListView)findViewById(R.id.listword);
+        string=new ArrayList<String>();
+        string.add("abc");
+        listView.setGroupIndicator(null);
+        datalode();
+        Ise();
 
 
         lv=(ListView)findViewById(R.id.left_drawer);
@@ -126,6 +170,78 @@ public class QuranDictionaryActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+    public void datalode(){
+        try {
+            dataBaseHelper=new DataBaseHelper(mContext, "AnalyzeQuran1");
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(mContext,"not",Toast.LENGTH_LONG).show();
+        }
+        dataBaseHelper.leter();
+
+    }
+
+    void is(){
+
+        Spinner spinner2 = (Spinner)findViewById(R.id.Spb1);
+        ayatarbi.clear();
+        for (int a=0;a<vc_ayat.size();a++){
+            ayatarbi.add(vc_ayat.get(a).getChapter_leater_arbi());
+        }
+
+        spin = new ArrayAdapter<String>(mContext,R.layout.spinner_item, ayatarbi);
+
+        spin.setDropDownViewResource(R.layout.spinner_item); // The drop down view
+        spin.notifyDataSetChanged();
+        spinner2.setAdapter(spin);
+
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                select_ayat = vc_ayat.get(i).getChapter_leater_arbi();
+
+                dataBaseHelper.getselectdata(select_ayat);
+                vv= Allword.getAllChapterList();
+
+//
+//               adapetlist();
+
+                expanda_adapter neww=new expanda_adapter(mContext,string,hasyh(vv),1);
+                listView.setAdapter(neww);
+                neww.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+    }
+
+    private void Ise(){
+        Spinner spinner = (Spinner)findViewById(R.id.Spblood_name);
+
+        ArrayList<String> mylist = new ArrayList<String>();
+        ayatarbi = new ArrayList<String>();
+        //        AllLetters all=new AllLetters();
+        vc= AllLetters.getleterList();
+
+        for (int i=0;i<vc.size();i++){
+            mylist.add(vc.get(i).getChapter_leater());
+        }
+        // Application of the Array to the Spinner
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(mContext,R.layout.spinner_item, mylist);
+
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        // The drop down view
+        spinner.setAdapter(spinnerArrayAdapter);
+        spinner.setOnItemSelectedListener(this);
+
+
+
+    }
 
     @Override
     public void onBackPressed() {
@@ -143,5 +259,54 @@ public class QuranDictionaryActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+        String selectedItem = vc.get(i).getChapter_leater_id();
+
+
+        //check which spinner triggered the listener
+        switch (adapterView.getId()) {
+            //country spinne
+            case R.id.Spblood_name:
+
+                lete_id = selectedItem;
+                dataBaseHelper.leterayat(lete_id);
+                vc_ayat= AllLetters_detl.getleterList();
+                Toast.makeText(mContext,""+ vc_ayat.size(),Toast.LENGTH_SHORT).show();
+
+                is();
+                break;
+
+
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+    HashMap<String, Vector<word_model>> hasyh(Vector<word_model> a){
+        HashMap<String, Vector<word_model>> hashMap = new HashMap<String, Vector<word_model>>();
+        a=Allword.getAllChapterList();
+        hashMap.put(string.get(0),a);
+        return hashMap;
+    }
+    HashMap<String, Vector<String>> hash(Vector <word_model> vv){
+        HashMap<String, Vector<String>> hashMap = new HashMap<String, Vector<String>>();
+        ArrayList<Vector<String>>ab=new ArrayList<>();
+        int a=vv.size();
+        Vector<String>agg;
+        for (int i=0;i<a;i++){
+            dataBaseHelper.test(vv.get(i).getVerseId());
+            agg= test.getAllChapterList();
+            ab.add(agg);
+        }
+        for (int i=0;i<a;i++){
+            hashMap.put(vv.get(i).getWordAr(),ab.get(i));
+            System.out.print(";;;;;;;;;;;;;;;; "+ab.size());
+        }
+        return hashMap;
     }
 }

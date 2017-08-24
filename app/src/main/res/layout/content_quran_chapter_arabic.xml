@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:background="@color/ThemeBackground"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.depth.quran.quran_indepth.activity.activity.QuranChapterActivity"
+    tools:showIn="@layout/app_bar_quran_chapter_arabic"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center_vertical"
+                android:weightSum="1.0">
+
+                <TextView
+                    android:id="@+id/ChapterNameEnTextView"
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorToolBar"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:id="@+id/ChapterNameArTextView"
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorToolBar"
+                    android:textSize="15sp" />
+            </TableRow>
+        </TableLayout>
+
+        <TableLayout
+            android:layout_width="380dp"
+            android:layout_height="55dip"
+            android:layout_marginTop="10dp"
+            android:background="#C8E6C9"
+            android:shrinkColumns="*"
+            android:stretchColumns="*">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1.0"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="13dp"
+                        android:src="@drawable/makkah_image"
+                        android:tint="@color/colorToolBar" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="37dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Serial:"
+                        android:textColor="@color/colorToolBar"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/Serail_number"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/colorToolBar"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Verses:"
+                        android:textColor="@color/colorToolBar"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/verses_number"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/colorToolBar"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Rukus:"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/colorToolBar"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/rukus_number"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="3dp"
+                        android:textColor="@color/colorToolBar"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="5.0dip">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1.0"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="Makki"
+                        android:textColor="@color/colorToolBar"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="67dip"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="23dp"
+                        android:text="Revelation:"
+                        android:textColor="@color/colorToolBar"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/Revelation_number"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:textColor="@color/colorToolBar"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="Parah:"
+                        android:textColor="@color/colorToolBar"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/parah_number"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:textColor="@color/colorToolBar"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sajda:"
+                        android:textColor="@color/colorToolBar"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/sajda_number"
+                        android:layout_width="30dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorToolBar"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </TableRow>
+        </TableLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorToolBar">
+        </View>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:src="@drawable/bismillah" />
+
+        <ListView
+            android:id="@+id/list_quran_verses"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

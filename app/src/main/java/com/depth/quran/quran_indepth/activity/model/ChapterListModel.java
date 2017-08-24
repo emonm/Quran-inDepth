@@ -15,15 +15,56 @@ public class ChapterListModel {
     private String Paras;
     private String Muqattaat;
     private String Cum_Verses;
+
     private String SajdaVerses;
     private String Mtid;
-    public ChapterListModel(String chapter_english,String chapter_arabic){
-        this.chapter_english=chapter_english;
-        this.chapter_english=chapter_arabic;
-    }
-    public ChapterListModel(){
 
+    public String getMtid() {
+        return Mtid;
     }
+
+    public void setMtid(String mtid) {
+        Mtid = mtid;
+    }
+
+    private String chapter_leater;
+    private String chapter_leater_id;
+
+    private String chapter_leater_arbi;
+    private String chapter_leater_enhlish;
+
+    public String getChapter_leater() {
+        return chapter_leater;
+    }
+
+    public void setChapter_leater(String chapter_leater) {
+        this.chapter_leater = chapter_leater;
+    }
+
+    public String getChapter_leater_id() {
+        return chapter_leater_id;
+    }
+
+    public void setChapter_leater_id(String chapter_leater_id) {
+        this.chapter_leater_id = chapter_leater_id;
+    }
+
+    public String getChapter_leater_arbi() {
+        return chapter_leater_arbi;
+    }
+
+    public void setChapter_leater_arbi(String chapter_leater_arbi) {
+        this.chapter_leater_arbi = chapter_leater_arbi;
+    }
+
+    public String getChapter_leater_enhlish() {
+        return chapter_leater_enhlish;
+    }
+
+    public void setChapter_leater_enhlish(String chapter_leater_enhlish) {
+        this.chapter_leater_enhlish = chapter_leater_enhlish;
+    }
+
     public String getChapter_id() {
         return chapter_id;
     }
@@ -77,6 +118,7 @@ public class ChapterListModel {
     public void setParas(String paras) {
         Paras = paras;
     }
+
     public String getMuqattaat() {
         return Muqattaat;
     }
@@ -99,14 +141,6 @@ public class ChapterListModel {
 
     public void setSajdaVerses(String sajdaVerses) {
         SajdaVerses = sajdaVerses;
-    }
-
-    public String getMtid() {
-        return Mtid;
-    }
-
-    public void setMtid(String mtid) {
-        Mtid = mtid;
     }
 
 }

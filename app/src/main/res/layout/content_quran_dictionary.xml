@@ -11,10 +11,43 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.depth.quran.quran_indepth.activity.activity.ExplorerActivity"
-    tools:showIn="@layout/app_bar_explorer">
+    tools:showIn="@layout/app_bar_quran_dictionay">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <LinearLayout
+        android:id="@+id/linearspin"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:background="#ffffff">
+
+        <Spinner
+            android:id="@+id/Spb1"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:background="@android:color/transparent"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            />
+
+        <Spinner
+            android:id="@+id/Spblood_name"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:background="@android:color/transparent"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            />
+
+    </LinearLayout>
+    <ExpandableListView
+        android:id="@+id/listword"
+        android:layout_below="@+id/linearspin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ExpandableListView>
+
+
 </RelativeLayout>

@@ -2,7 +2,6 @@ package com.depth.quran.quran_indepth.activity.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
