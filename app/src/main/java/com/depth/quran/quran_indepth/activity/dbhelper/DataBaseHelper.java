@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-
 import com.depth.quran.quran_indepth.activity.holder.AllChapterList;
 import com.depth.quran.quran_indepth.activity.holder.AllLetters;
 import com.depth.quran.quran_indepth.activity.holder.AllLetters_detl;
@@ -127,36 +126,102 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public void getChapteList() {
-        AllChapterList.allChapterList.removeAllElements();
-        String sqlTables = " Chapters ";
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + sqlTables, null);
-        ChapterListModel model;
-        if (cursor.moveToFirst()) {
-            do {
-                model = new ChapterListModel();
-                model.setChapter_arabic("" + cursor.getString(cursor.getColumnIndex("NameAr")));
-                model.setChapter_english("" + cursor.getString(cursor.getColumnIndex("NameEn")));
-                model.setRevelation_Number("" + cursor.getString(cursor.getColumnIndex("RevelationNumber")));
-                model.setRuku_Count("" + cursor.getString(cursor.getColumnIndex("RukuCount")));
-                model.setVerses("" + cursor.getString(cursor.getColumnIndex("VerseCount")));
-                model.setParas("" + cursor.getString(cursor.getColumnIndex("ParahsFall")));
-                model.setMuqattaat("" + cursor.getString(cursor.getColumnIndex("IsMuqattaat")));
-                model.setMtid("" + String.valueOf(cursor.getInt(cursor.getColumnIndex("MuqattaatId"))));
-                model.setCum_Verses("" + cursor.getString(cursor.getColumnIndex("CVersesCount")));
-                model.setSajdaVerses("" + cursor.getString(cursor.getColumnIndex("SajdaVerses")));
-                model.setChapter_id("" + cursor.getString(cursor.getColumnIndex("ChapterId")));
-                AllChapterList.setChapterList(model);
-            }
-            while (cursor.moveToNext());
+//    public void getChapteList() {
+//        AllChapterList.allChapterList.removeAllElements();
+//        String sqlTables = " Chapters ";
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = db.rawQuery("SELECT * FROM " + sqlTables, null);
+//        ChapterListModel model;
+//        if (cursor.moveToFirst()) {
+//            do {
+//                model = new ChapterListModel();
+//                model.setChapter_arabic("" + cursor.getString(cursor.getColumnIndex("NameAr")));
+//                model.setChapter_english("" + cursor.getString(cursor.getColumnIndex("NameEn")));
+//                model.setRevelation_Number("" + cursor.getString(cursor.getColumnIndex("RevelationNumber")));
+//                model.setRuku_Count("" + cursor.getString(cursor.getColumnIndex("RukuCount")));
+//                model.setVerses("" + cursor.getString(cursor.getColumnIndex("VerseCount")));
+//                model.setParas("" + cursor.getString(cursor.getColumnIndex("ParahsFall")));
+//                model.setMuqattaat("" + cursor.getString(cursor.getColumnIndex("IsMuqattaat")));
+//                model.setMtid("" + String.valueOf(cursor.getInt(cursor.getColumnIndex("MuqattaatId"))));
+//                model.setCum_Verses("" + cursor.getString(cursor.getColumnIndex("CVersesCount")));
+//                model.setSajdaVerses("" + cursor.getString(cursor.getColumnIndex("SajdaVerses")));
+//                model.setChapter_id("" + cursor.getString(cursor.getColumnIndex("ChapterId")));
+//                AllChapterList.setChapterList(model);
+//            }
+//            while (cursor.moveToNext());
+//        }
+//        cursor.close();
+//        db.close();
+//
+//
+//        Log.w("Total Size", "are" + AllChapterList.getAllChapterList().size());
+//    }
+//
+//    public String getChaptemn(String aa) {
+//        String sqlTables = " Muqattaats ";
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = db.rawQuery("SELECT * FROM " + sqlTables + " WHERE MuqattaatId = '" + aa + "'", null);
+//        String a = null;
+//        if (cursor.moveToFirst()) {
+//            do {
+//                a = cursor.getString(cursor.getColumnIndex("MuqattaatWordAr"));
+//            }
+//            while (cursor.moveToNext());
+//        }
+//        cursor.close();
+//        db.close();
+//        return a;
+//
+//    }
+//
+//    public void caper_details(String capter) {
+//        String sqlTables = " Verses ";
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = db.rawQuery("SELECT * FROM " + sqlTables + " where " + " ChapterId =" + capter, null);
+//        QuranListModel model;
+//        if (cursor.moveToFirst()) {
+//            do {
+//                model = new QuranListModel();
+//                model.setChapSerialNumber(cursor.getString(cursor.getColumnIndex("ChapSerialNumber")));
+//                model.setVerseAr(cursor.getString(cursor.getColumnIndex("VerseAr")));
+//                model.setVerseEn(cursor.getString(cursor.getColumnIndex("VerseEn")));
+//                model.setChapter_id(cursor.getString(cursor.getColumnIndex("ChapterId")));
+//                AllQuranList.setAllQuranList(model);
+//            } while (cursor.moveToNext());
+//        }
+//        cursor.close();
+//        db.close();
+//    }
+public void getChapteList() {
+    AllChapterList.allChapterList.removeAllElements();
+    String sqlTables = " Chapters ";
+    SQLiteDatabase db = this.getReadableDatabase();
+    Cursor cursor = db.rawQuery("SELECT * FROM " + sqlTables, null);
+    ChapterListModel model;
+    if (cursor.moveToFirst()) {
+        do {
+            model = new ChapterListModel();
+            model.setChapter_arabic("" + cursor.getString(cursor.getColumnIndex("NameAr")));
+            model.setChapter_english("" + cursor.getString(cursor.getColumnIndex("NameEn")));
+            model.setRevelation_Number("" + cursor.getString(cursor.getColumnIndex("RevelationNumber")));
+            model.setRuku_Count("" + cursor.getString(cursor.getColumnIndex("RukuCount")));
+            model.setVerses("" + cursor.getString(cursor.getColumnIndex("VerseCount")));
+            model.setParas("" + cursor.getString(cursor.getColumnIndex("ParahsFall")));
+            model.setMuqattaat("" + cursor.getString(cursor.getColumnIndex("IsMuqattaat")));
+            model.setMtid("" + String.valueOf(cursor.getInt(cursor.getColumnIndex("MuqattaatId"))));
+            model.setCum_Verses("" + cursor.getString(cursor.getColumnIndex("CVersesCount")));
+            model.setSajdaVerses("" + cursor.getString(cursor.getColumnIndex("SajdaVerses")));
+            model.setChapter_id("" + cursor.getString(cursor.getColumnIndex("ChapterId")));
+            AllChapterList.setChapterList(model);
         }
-        cursor.close();
-        db.close();
-
-
-        Log.w("Total Size", "are" + AllChapterList.getAllChapterList().size());
+        while (cursor.moveToNext());
     }
+    cursor.close();
+    db.close();
+
+
+    Log.w("Total Size", "are" + AllChapterList.getAllChapterList().size());
+}
 
     public String getChaptemn(String aa) {
         String sqlTables = " Muqattaats ";
@@ -372,5 +437,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.close();
         return a;
     }
+
+
 
 }

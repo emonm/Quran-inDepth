@@ -1,10 +1,10 @@
 package com.depth.quran.quran_indepth.activity.activity;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,25 +12,33 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.depth.quran.quran_indepth.R;
 import com.depth.quran.quran_indepth.activity.adapter.BaseAdpterList;
+import com.depth.quran.quran_indepth.activity.adapter.Fevoreat_ListAdapter;
+import com.depth.quran.quran_indepth.activity.dbhelper.Database_foverate;
+import com.depth.quran.quran_indepth.activity.holder.All_Foveratlit;
+import com.depth.quran.quran_indepth.activity.model.foverat_model;
+
+import java.util.Vector;
 
 public class BookmarksActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     ListView lv;
     BaseAdpterList baseAdpterList;
     ImageView facebookLink,youtubeLink,googlePluseLink,websiteLink;
+    Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookmarks);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        mContext=this;
 
         lv=(ListView)findViewById(R.id.left_drawer);
         facebookLink=(ImageView)findViewById(R.id.facebook);
@@ -124,6 +132,10 @@ public class BookmarksActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        test();
+
     }
 
     @Override
@@ -141,5 +153,15 @@ public class BookmarksActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    void test(){
+        ListView aas=(ListView) this.findViewById(R.id.asa);
+        Database_foverate n=new Database_foverate(mContext);
+        n.getallfevorate();
+        Vector<foverat_model>aa=All_Foveratlit.getallfoveratlist();
+        Fevoreat_ListAdapter febadp=new Fevoreat_ListAdapter(mContext,R.layout.row_fevorat,aa);
+        aas.setAdapter(febadp);
+        febadp.notifyDataSetChanged();
     }
 }

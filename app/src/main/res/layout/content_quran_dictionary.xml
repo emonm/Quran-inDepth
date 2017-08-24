@@ -41,9 +41,19 @@
             />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_detailfor"
+        android:layout_below="@+id/linearspin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"/>
     <ExpandableListView
         android:id="@+id/listword"
-        android:layout_below="@+id/linearspin"
+        android:layout_below="@+id/txt_detailfor"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

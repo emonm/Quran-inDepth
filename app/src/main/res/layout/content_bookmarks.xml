@@ -13,7 +13,8 @@
     tools:context="com.depth.quran.quran_indepth.activity.activity.ExplorerActivity"
     tools:showIn="@layout/app_bar_explorer">
 
-    <TextView
+    <ListView
+        android:id="@+id/asa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />

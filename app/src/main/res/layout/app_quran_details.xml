@@ -9,6 +9,7 @@
     tools:context="com.depth.quran.quran_indepth.activity.activity.QuranDetailsActivity">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/toolbar_quran_detile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">

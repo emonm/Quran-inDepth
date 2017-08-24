@@ -19,6 +19,7 @@ import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.depth.quran.quran_indepth.R;
@@ -53,7 +54,7 @@ public class QuranDictionaryActivity extends AppCompatActivity
     ArrayList<String> ayatarbi;
     ArrayAdapter<String> spin;
     String select_ayat,calculatdata;
-
+    TextView txt_detailfor;
     Wordlist wo;
     Vector <word_model>vv;
     ExpandableListView listView;
@@ -69,6 +70,7 @@ public class QuranDictionaryActivity extends AppCompatActivity
 
 
         listView = (ExpandableListView)findViewById(R.id.listword);
+        txt_detailfor=(TextView)this.findViewById(R.id.txt_detailfor);
         string=new ArrayList<String>();
         string.add("abc");
         listView.setGroupIndicator(null);
@@ -203,7 +205,9 @@ public class QuranDictionaryActivity extends AppCompatActivity
                 dataBaseHelper.getselectdata(select_ayat);
                 vv= Allword.getAllChapterList();
 
-//
+                getSupportActionBar().setTitle(" ("+select_ayat+") "+vc_ayat.get(i).getChapter_leater_enhlish());
+                txt_detailfor.setText("The word ("+select_ayat+") "+vc_ayat.get(i).getChapter_leater_enhlish()+" "+
+                vv.size()+" times,in 1 derive forms");
 //               adapetlist();
 
                 expanda_adapter neww=new expanda_adapter(mContext,string,hasyh(vv),1);
@@ -278,8 +282,6 @@ public class QuranDictionaryActivity extends AppCompatActivity
 
                 is();
                 break;
-
-
         }
     }
 
