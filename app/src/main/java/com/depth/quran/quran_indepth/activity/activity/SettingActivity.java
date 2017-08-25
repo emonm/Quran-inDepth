@@ -11,7 +11,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.Switch;
+import android.widget.Toast;
 
 import com.depth.quran.quran_indepth.R;
 import com.depth.quran.quran_indepth.activity.adapter.BaseAdpterList;
@@ -20,6 +23,7 @@ public class SettingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     ListView lv;
     BaseAdpterList baseAdpterList;
+    Switch aSwitch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,11 +31,11 @@ public class SettingActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        aSwitch=(Switch)findViewById(R.id.TranslationSwitch);
         lv=(ListView)findViewById(R.id.left_drawer);
 
-        String names[]={"Quran -in Depth","Explorer","Quran Chapters","Quran Dictionary","Bookmarks","Start Tour","About","Settings"};
-        int images[]={R.drawable.appicon,R.drawable.ic_library_books,R.drawable.ic_list,R.drawable.ic_font_download,
+        String names[]={"Analyze Quran","Explorer","Quran Chapters","Quran Dictionary","Bookmarks","Start Tour","About","Settings"};
+        int images[]={R.drawable.analyze_quran,R.drawable.ic_library_books,R.drawable.ic_list,R.drawable.ic_font_download,
                 R.drawable.ic_bookmark_white_36dp,R.drawable.ic_direction,
                 R.drawable.ic_error_outline_white_36dp,R.drawable.ic_settings_white_36dp};
 
@@ -80,6 +84,19 @@ public class SettingActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean ifCleaked) {
+                if(ifCleaked){
+                    Toast.makeText(getApplicationContext(),"On",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"off",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override

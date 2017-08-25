@@ -2,10 +2,14 @@ package com.depth.quran.quran_indepth.activity.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.BackgroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +20,10 @@ import com.depth.quran.quran_indepth.activity.model.ChapterListModel;
 
 
 import java.io.IOException;
+import java.text.Normalizer;
 import java.util.Vector;
+
+import static android.R.attr.filter;
 
 
 /**
@@ -26,9 +33,17 @@ public class ChapterListAdapter extends ArrayAdapter<ChapterListModel> {
     Context mContext;
     private DataBaseHelper dataBaseHelper;
     Vector<ChapterListModel> chapterListModels;
+    private Vector<ChapterListModel> originalList;
+    private Vector<ChapterListModel> chatList;
+    private CityFilter filter;
 
     public ChapterListAdapter(Context context, int textViewResourceId, Vector<ChapterListModel> chapterListData) {
         super(context, textViewResourceId, chapterListData);
+        this.mContext = context;
+        this.chatList = new Vector<ChapterListModel>();
+        this.originalList = new Vector<ChapterListModel>();
+        this.chatList.addAll(chapterListData);
+        this.originalList.addAll(chapterListData);
         this.mContext = context;
 
     }
@@ -51,8 +66,6 @@ public class ChapterListAdapter extends ArrayAdapter<ChapterListModel> {
             holder.txt_paras = (TextView) convertView.findViewById(R.id.ParahsFallTextView);
             holder.txt_muqattaat = (TextView) convertView.findViewById(R.id.MuqattaatWordsTextView);
             holder.txt_cum_verses = (TextView) convertView.findViewById(R.id.CVersesCountTextView);
-
-
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -96,5 +109,57 @@ public class ChapterListAdapter extends ArrayAdapter<ChapterListModel> {
         TextView txt_cum_verses;
 
     }
+    private class CityFilter extends Filter {
 
-}
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+
+            constraint = constraint.toString().toLowerCase();
+            FilterResults result = new FilterResults();
+            if (constraint != null && constraint.toString().length() > 0) {
+                Vector<ChapterListModel> filteredItems = new Vector<ChapterListModel>();
+
+                for (int i = 0, l = originalList.size(); i < l; i++) {
+                    ChapterListModel country = originalList.get(i);
+                    if (country.getChapter_id().toString().toLowerCase().contains(constraint)) {
+                        filteredItems.add(country);
+                    } else if (country.getChapter_english().toString().toLowerCase().contains(constraint)) {
+                        filteredItems.add(country);
+                    }
+                    else if (country.getChapter_arabic().toString().toLowerCase().contains(constraint)) {
+                        filteredItems.add(country);
+                    }
+                }
+                result.count = filteredItems.size();
+                result.values = filteredItems;
+            } else {
+                synchronized (this) {
+                    result.values = originalList;
+                    result.count = originalList.size();
+                }
+            }
+            return result;
+        }
+
+        @SuppressWarnings("unchecked")
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            chatList = (Vector<ChapterListModel>) results.values;
+            notifyDataSetChanged();
+            clear();
+            for (int i = 0, l = chatList.size(); i < l; i++)
+
+                add(chatList.get(i));
+            notifyDataSetInvalidated();
+        }
+    }
+
+    @Override
+    public Filter getFilter() {
+        if (filter == null) {
+            filter = new CityFilter();
+        }
+        return filter;
+    }
+
+    }

@@ -27,6 +27,31 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/small_text"
                 android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:tint="@color/colorToolBar"
+                    android:src="@drawable/abc_ic_share" />
+
+
+                <ImageView
+                    android:id="@+id/bookmarhArabic"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:tint="@color/colorToolBar"
+                    android:src="@drawable/ic_bookmark_white_36dp" />
+
+            </LinearLayout>
         </RelativeLayout>
 
         <View
@@ -54,6 +79,12 @@
             android:layout_marginRight="10dp"
             android:background="@color/ash"></View>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/ash"></View>
     </LinearLayout>
 
 </LinearLayout>

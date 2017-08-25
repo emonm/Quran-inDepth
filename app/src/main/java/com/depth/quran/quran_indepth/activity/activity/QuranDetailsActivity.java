@@ -1,21 +1,29 @@
 package com.depth.quran.quran_indepth.activity.activity;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,12 +31,20 @@ import android.widget.Toast;
 import com.depth.quran.quran_indepth.R;
 import com.depth.quran.quran_indepth.activity.adapter.BaseAdpterList;
 import com.depth.quran.quran_indepth.activity.adapter.ChapterDetailsListAdapter;
+import com.depth.quran.quran_indepth.activity.adapter.ChapterListAdapter;
 import com.depth.quran.quran_indepth.activity.dbhelper.DataBaseHelper;
+import com.depth.quran.quran_indepth.activity.holder.AllChapterList;
 import com.depth.quran.quran_indepth.activity.holder.AllQuranList;
+import com.depth.quran.quran_indepth.activity.model.ChapterListModel;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
-public class QuranDetailsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+public class QuranDetailsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+        ,SearchView.OnQueryTextListener,AdapterView.OnItemSelectedListener{
 
     Context mContext;
     DataBaseHelper dataBaseHelper;
@@ -38,16 +54,21 @@ public class QuranDetailsActivity extends AppCompatActivity implements Navigatio
     String name;
     String quran_id;
     String verses,relevation,rukus,parah,arabic_name,sajda_count;
-
     ChapterDetailsListAdapter mChapterDetailsListAdapter;
     TextView txt_chapter_title;
     ListView lv;
     BaseAdpterList baseAdpterList;
+    Spinner spinner2;
+    ArrayAdapter<String> names;
+    EditText editText;
+    Vector<ChapterListModel> vc;
+    ChapterListAdapter chapterListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quran_details);
+
         mContext = this;
         if (android.os.Build.VERSION.SDK_INT >= 21) {
             Window window = getWindow();
@@ -61,8 +82,8 @@ public class QuranDetailsActivity extends AppCompatActivity implements Navigatio
 
         lv=(ListView)findViewById(R.id.left_drawer);
 
-        String names[]={"Quran -in Depth","Explorer","Quran Chapters","Quran Dictionary","Bookmarks","Start Tour","About","Settings"};
-        int images[]={R.drawable.appicon,R.drawable.ic_library_books,R.drawable.ic_list,R.drawable.ic_font_download,
+        String names[]={"Analyze Quran","Explorer","Quran Chapters","Quran Dictionary","Bookmarks","Start Tour","About","Settings"};
+        int images[]={R.drawable.analyze_quran,R.drawable.ic_library_books,R.drawable.ic_list,R.drawable.ic_font_download,
                 R.drawable.ic_bookmark_white_36dp,R.drawable.ic_direction,
                 R.drawable.ic_error_outline_white_36dp,R.drawable.ic_settings_white_36dp};
 
@@ -117,7 +138,7 @@ public class QuranDetailsActivity extends AppCompatActivity implements Navigatio
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         datalode();
-
+        quranSpineer();
         initUI();
     }
 
@@ -179,6 +200,9 @@ public class QuranDetailsActivity extends AppCompatActivity implements Navigatio
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.quran_details_search, menu);
+        MenuItem search=menu.findItem(R.id.action_search_quran);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
+        searchView.setOnQueryTextListener(this);
         return true;
     }
 
@@ -187,7 +211,35 @@ public class QuranDetailsActivity extends AppCompatActivity implements Navigatio
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_search) {
+        if (id == R.id.action_search_number_quran) {
+//            Toast.makeText(mContext,"dkd",Toast.LENGTH_SHORT).show();
+//            AlertDialog.Builder mBuilder = new AlertDialog.Builder(mContext);
+//            View mView = getLayoutInflater().inflate(R.layout.custom_alert_dialog, null);
+//            final EditText mEmail = (EditText) mView.findViewById(R.id.editText);
+//            Button cancel = (Button) mView.findViewById(R.id.cancel);
+//            Button done = (Button) mView.findViewById(R.id.done);
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(mContext);
+            View mView = getLayoutInflater().inflate(R.layout.custom_alert_dialog, null);
+            editText = (EditText) mView.findViewById(R.id.editText);
+            Button done = (Button) mView.findViewById(R.id.done);
+            Button cancel = (Button) mView.findViewById(R.id.cancel);
+
+            mBuilder.setView(mView);
+            final AlertDialog dialog = mBuilder.create();
+            dialog.show();
+            done.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                                mChapterDetailsListAdapter.getFilter().filter(editText.getText().toString());
+                    }
+            });
+            cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(mContext,"Cancel",Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+            });
             return true;
         }
 
@@ -201,5 +253,43 @@ public class QuranDetailsActivity extends AppCompatActivity implements Navigatio
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
 
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        mChapterDetailsListAdapter.getFilter().filter(newText.toString());
+        return true;
+    }
+
+    private void quranSpineer(){
+        Spinner spinner = (Spinner)findViewById(R.id.spineer);
+
+        ArrayList<String> mylist = new ArrayList<String>();
+        //        AllLetters all=new AllLetters();
+        vc= AllChapterList.getAllChapterList();
+
+        for (int i=0;i<vc.size();i++){
+            mylist.add(vc.get(i).getChapter_english());
+        }
+        // Application of the Array to the Spinner
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(mContext,R.layout.spinner_item, mylist);
+
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        // The drop down view
+        spinner.setAdapter(spinnerArrayAdapter);
+        spinner.setOnItemSelectedListener(this);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 }

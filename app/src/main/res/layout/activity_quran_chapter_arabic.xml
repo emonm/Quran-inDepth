@@ -15,64 +15,65 @@
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
-        android:background="#21583B"
+        android:background="#F4FDF8"
         android:layout_width="200dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header_main"
         >
-        <View
-            android:id="@+id/header_divider"
-            android:layout_width="fill_parent"
-            android:layout_height="2dp"
-            android:layout_below="@+id/header_view"
-            android:background="#193E2C" />
+
 
         <ListView
             android:id="@+id/left_drawer"
             android:layout_width="match_parent"
-            android:divider="#193E2C"
-            android:dividerHeight="3px"
+            android:divider="#DAE3DE"
+            android:dividerHeight="2px"
+            android:layout_marginTop="150dp"
             android:layout_height="wrap_content"
             >
-
         </ListView>
 
         <ImageView
             android:id="@+id/facebook"
             android:layout_marginTop="490dp"
             android:layout_marginLeft="5dp"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:tint="@color/colorToolBar"
             android:src="@drawable/ic_facebook_white_48dp"/>
-        <ImageView
-            android:id="@+id/youtube"
-            android:layout_marginTop="490dp"
-            android:layout_marginLeft="46dp"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_subscriptions_white_24dp"/>
+
         <ImageView
             android:id="@+id/goolge_plus"
-            android:layout_marginTop="490dp"
+            android:layout_marginTop="493dp"
             android:layout_marginLeft="92dp"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:tint="@color/colorToolBar"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
             android:src="@drawable/ic_google_plus_white_48dp"/>
         <ImageView
             android:id="@+id/website"
-            android:layout_marginTop="490dp"
+            android:layout_marginTop="492dp"
             android:layout_marginLeft="141dp"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:tint="@color/colorToolBar"
             android:src="@drawable/ic_web_white_48dp"/>
         <View
             android:id="@+id/heade"
             android:layout_width="fill_parent"
             android:layout_height="2dp"
-            android:layout_marginTop="400dp"
+            android:layout_marginTop="457dp"
             android:layout_below="@+id/header_view"
-            android:background="#193E2C" />
+            android:background="#DAE3DE" />
 
+        <ImageView
+            android:id="@+id/youtube"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_marginLeft="46dp"
+            android:layout_marginTop="490dp"
+            android:src="@drawable/ic_subscriptions_white_24dp"
+            android:tint="@color/colorToolBar" />
 
     </android.support.design.widget.NavigationView>
 

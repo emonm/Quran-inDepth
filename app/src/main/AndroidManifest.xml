@@ -59,11 +59,13 @@
             android:name=".activity.activity.SettingActivity"
             android:label="Setting"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".activity.activity.QuranChapterArabicActivity"
-            android:label="Arabic Details"
-            android:theme="@style/AppTheme.NoActionBar">
-
+        <activity
+            android:name=".activity.activity.QuranChapterArabicActivity"
+            android:label="Setting"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
         </activity>
+
     </application>
 
 </manifest>

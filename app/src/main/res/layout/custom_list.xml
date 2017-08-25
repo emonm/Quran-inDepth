@@ -11,21 +11,21 @@
         >
     <ImageView
         android:id="@+id/imagesrc"
-        android:layout_width="40dp"
-        android:layout_height="30dp"
-
-        android:layout_marginTop="7dp"
+        android:layout_width="31dp"
+        android:layout_height="21dp"
+        android:tint="@color/colorToolBar"
+        android:layout_marginTop="5dp"
         android:src="@drawable/ic_settings_white_36dp"/>
 
     <TextView
         android:id="@+id/name"
         android:text="save"
-        android:textColor="#fff"
-        android:layout_marginTop="7dp"
+        android:textColor="#11251A"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="5dp"
         android:layout_height="wrap_content"
-        android:textSize="17dip"
+        android:textSize="13dip"
         />
     </LinearLayout>
 

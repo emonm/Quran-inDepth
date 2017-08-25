@@ -15,10 +15,18 @@ public class ChapterListModel {
     private String Paras;
     private String Muqattaat;
     private String Cum_Verses;
-
+    private int id;
     private String SajdaVerses;
     private String Mtid;
 
+
+    public ChapterListModel(int id,String chapter_english){
+        this.id=id;
+        this.chapter_english=chapter_english;
+    }
+    public ChapterListModel(){
+
+    }
     public String getMtid() {
         return Mtid;
     }

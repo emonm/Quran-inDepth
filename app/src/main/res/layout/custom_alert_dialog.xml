@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="15dp"
+        android:textColor="#fff"
+        android:textSize="25sp"
+        android:textStyle="bold|italic"
+        android:background="@color/colorToolBar"
+        android:text="Go to Ayah"
+        />
+    <TextView
+        android:text="Enter Ayah Number"
+        android:textColor="#000"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="250dp"
+        android:inputType="numberPassword"
+        android:layout_height="55dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/rounded_border_edittext"
+        android:layout_marginTop="10dp" />
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal">
+    <Button
+        android:id="@+id/cancel"
+        android:text="Cancel"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        android:layout_width="100dp"
+        android:background="#45B97C"
+        android:textStyle="bold|italic"
+        android:layout_height="40dp" />
+        <Button
+            android:id="@+id/done"
+            android:text="Done"
+            android:textAllCaps="false"
+            android:layout_width="100dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#fff"
+            android:background="#45B97C"
+            android:textStyle="bold|italic"
+            android:layout_height="40dp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -3,15 +3,17 @@ package com.depth.quran.quran_indepth.activity.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -26,13 +28,12 @@ import com.depth.quran.quran_indepth.activity.holder.AllQuranList;
 
 import java.io.IOException;
 
-public class QuranChapterArabicActivity extends AppCompatActivity implements
-        NavigationView.OnNavigationItemSelectedListener{
-    ListView lv;
-    BaseAdpterList baseAdpterList;
-    ImageView facebookLink,youtubeLink,googlePluseLink,websiteLink;
+public class QuranChapterArabicActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
+
     Context mContext;
     DataBaseHelper dataBaseHelper;
+
     TextView txt_chapter_name, txt_verses, txt_rukus, txt_relevation,
             txt_parah, txt_serail_num, txt_arabic, txt_sajda;
     String name;
@@ -41,20 +42,32 @@ public class QuranChapterArabicActivity extends AppCompatActivity implements
 
     ChapterArabicDetailsListAdapter chapterArabicDetailsListAdapter;
     TextView txt_chapter_title;
+
+    ListView lv;
+    BaseAdpterList baseAdpterList;
+    ImageView facebookLink,youtubeLink,googlePluseLink,websiteLink;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quran_chapter_arabic);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         lv=(ListView)findViewById(R.id.left_drawer);
         facebookLink=(ImageView)findViewById(R.id.facebook);
         youtubeLink=(ImageView)findViewById(R.id.youtube);
         googlePluseLink=(ImageView)findViewById(R.id.goolge_plus);
         websiteLink=(ImageView)findViewById(R.id.website);
-
-        String names[]={"Quran -in Depth","Explorer","Quran Chapters","Quran Dictionary","Bookmarks","Start Tour","About","Settings"};
-        int images[]={R.drawable.appicon,R.drawable.ic_library_books,R.drawable.ic_list,R.drawable.ic_font_download,
+        mContext = this;
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
+        String names[]={"Analyze Quran","Explorer","Quran Chapters","Quran Dictionary","Bookmarks","Start Tour","About","Settings"};
+        int images[]={R.drawable.analyze_quran,R.drawable.ic_library_books,R.drawable.ic_list,R.drawable.ic_font_download,
                 R.drawable.ic_bookmark_white_36dp,R.drawable.ic_direction,
                 R.drawable.ic_error_outline_white_36dp,R.drawable.ic_settings_white_36dp};
 
@@ -139,28 +152,12 @@ public class QuranChapterArabicActivity extends AppCompatActivity implements
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
         datalode();
 
         initUI();
-
-    }
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
     private void initUI() {
 
         txt_serail_num = (TextView) this.findViewById(R.id.Serail_number);
@@ -180,7 +177,7 @@ public class QuranChapterArabicActivity extends AppCompatActivity implements
         txt_parah.setText("" + parah);
         txt_sajda.setText("" + sajda_count);
         chapterArabicDetailsListAdapter = new ChapterArabicDetailsListAdapter(mContext, R.layout.row_arabic_chpater_details, AllQuranList.getAllQuranList());
-        ListView listView = (ListView) this.findViewById(R.id.list_quran_verses);
+        ListView listView = (ListView) this.findViewById(R.id.list_quran);
         listView.setAdapter(chapterArabicDetailsListAdapter);
         chapterArabicDetailsListAdapter.notifyDataSetChanged();
 
@@ -204,5 +201,23 @@ public class QuranChapterArabicActivity extends AppCompatActivity implements
         parah = intent.getExtras().getString("parah");
         sajda_count = intent.getExtras().getString("sajda");
         dataBaseHelper.chapter_arabic_details(quran_id);
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

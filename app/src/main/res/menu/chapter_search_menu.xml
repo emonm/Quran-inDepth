@@ -7,9 +7,4 @@
         android:icon="@drawable/ic_search_white"
         android:title="Search"
         app:actionViewClass="android.support.v7.widget.SearchView"/>
-    <item
-        android:id="@+id/action_drop_down"
-        app:showAsAction="always|collapseActionView"
-        android:icon="@drawable/ic_dropdown"
-        />
 </menu>

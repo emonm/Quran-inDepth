@@ -17,18 +17,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import com.depth.quran.quran_indepth.R;
 import com.depth.quran.quran_indepth.activity.adapter.BaseAdpterList;
 import com.depth.quran.quran_indepth.activity.adapter.ChapterListAdapter;
 import com.depth.quran.quran_indepth.activity.dbhelper.DataBaseHelper;
 import com.depth.quran.quran_indepth.activity.holder.AllChapterList;
+import com.depth.quran.quran_indepth.activity.holder.AllLetters;
 import com.depth.quran.quran_indepth.activity.model.ChapterListModel;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class QuranChapterActivity extends AppCompatActivity
@@ -39,9 +43,7 @@ public class QuranChapterActivity extends AppCompatActivity
     private DataBaseHelper dataBaseHelper;
     private ListView listView;
     private ChapterListAdapter mChapterListAdapter;
-    private boolean isSelect = true;
     ImageView facebookLink,youtubeLink,googlePluseLink,websiteLink;
-    Vector<ChapterListModel> model = new Vector<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,15 +51,17 @@ public class QuranChapterActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         mContext =getApplicationContext();
+
         lv=(ListView)findViewById(R.id.left_drawer);
         facebookLink=(ImageView)findViewById(R.id.facebook);
         youtubeLink=(ImageView)findViewById(R.id.youtube);
         googlePluseLink=(ImageView)findViewById(R.id.goolge_plus);
         websiteLink=(ImageView)findViewById(R.id.website);
 
-        String names[]={"Quran -in Depth","Explorer","Quran Chapters","Quran Dictionary","Bookmarks","Start Tour","About","Settings"};
-        int images[]={R.drawable.appicon,R.drawable.ic_library_books,R.drawable.ic_list,R.drawable.ic_font_download,
+        String names[]={"Analyze Quran","Explorer","Quran Chapters","Quran Dictionary","Bookmarks","Start Tour","About","Settings"};
+        int images[]={R.drawable.analyze_quran,R.drawable.ic_library_books,R.drawable.ic_list,R.drawable.ic_font_download,
                 R.drawable.ic_bookmark_white_36dp,R.drawable.ic_direction,
                 R.drawable.ic_error_outline_white_36dp,R.drawable.ic_settings_white_36dp};
 
@@ -157,8 +161,8 @@ public class QuranChapterActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         DataLoad();
-
         initUI();
+
     }
 
     public void DataLoad() {
@@ -174,15 +178,14 @@ public class QuranChapterActivity extends AppCompatActivity
         dataBaseHelper.getChapteList();
     }
 
+
     private void initUI() {
         mChapterListAdapter = new ChapterListAdapter(mContext, R.layout.row_chapter, AllChapterList.getAllChapterList());
         listView = (ListView)findViewById(R.id.listviewChapter);
         listView.setAdapter(mChapterListAdapter);
         mChapterListAdapter.notifyDataSetChanged();
-        Vector<ChapterListModel> model_list = AllChapterList.getAllChapterList();
-        String name = model_list.get(0).getChapter_english();
 
-        Log.w("English Names: ",name);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -191,6 +194,7 @@ public class QuranChapterActivity extends AppCompatActivity
                 ChapterListModel model_list = AllChapterList.getChapterList(position);
                 String ida = model_list.getChapter_id().toString();
                 String name = model_list.getChapter_english();
+                Log.w("English Name:",name);
                 String verses = model_list.getVerses().toString();
                 String rukus = model_list.getRuku_Count();
                 String relevation = model_list.getRevelation_Number().toString();
@@ -209,6 +213,7 @@ public class QuranChapterActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
     }
     @Override
     public void onBackPressed() {
@@ -225,7 +230,8 @@ public class QuranChapterActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.chapter_search_menu, menu);
         MenuItem search=menu.findItem(R.id.action_search_chapter);
-        SearchView searchView=(SearchView) MenuItemCompat.getActionView(search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
+        searchView.setOnQueryTextListener(this);
         return true;
     }
 
@@ -250,14 +256,15 @@ public class QuranChapterActivity extends AppCompatActivity
     }
     @Override
     public boolean onQueryTextSubmit(String query) {
-
         return false;
     }
+
     @Override
     public boolean onQueryTextChange(String newText) {
-        return false;
+
+        mChapterListAdapter.getFilter().filter(newText.toString());
+
+        return true;
     }
-
-
 
 }

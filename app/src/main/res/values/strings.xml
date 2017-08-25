@@ -3,4 +3,14 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
+
+    <string name="arabic_about">السلام عليكم ورحمة الله وبركاته ...
+نحاول جاهدين في مؤسسة عليون، تقديم تطبيق للقرآن الكريم يساعد الباحثين الكرام في البحث بطرق جديده وعميقة، همُنا أن نُبرز الحقائق العلمية الموجودة في الصياغة اللغوية للقرآن الكريم، ولأننا نعتبر الحروف العربية حروف خَلقية، يَخضغ كل حرف فيه بتوابعه من فتحة وضمة وكسرة إلى معادلة الوجود الإنساني في الحياة الدنيا، ونعدكم أن نستمر بتطوير هذا الطبيق لنصل إلى الهدف المرجوا منه في القريب العاجل ان شاءالله تعالى.
+</string>
+    <string name="english_about">Our beloved Brothers and sisters
+Peace be with you all,
+We strive in the foundation of Eleyoun, to provide an application of the Holy Quran to help our beloved distinguished researchers in their quranic research in new and deep ways.
+
+We wish to highlight the scientific facts found in the linguistic formulation of the Holy Quran. we consider the Arabic letters as the letters of the Creator, each character in which the appendices of the equivalent of human presence in this life. We promise that we will continue to develop this application in order to reach the desired goal of it soon, God willing.</string>
+
 </resources>

@@ -13,5 +13,7 @@
     <color name="ash">#F2F2F2</color>
     <color name="PrimaryColor">#ff297797</color>
     <color name="deep_ash">#636262</color>
+    <color name="BlackFont">#ff000000</color>
+    <color name="FontPrimaryColor">#ff297797</color>
 
 </resources>
