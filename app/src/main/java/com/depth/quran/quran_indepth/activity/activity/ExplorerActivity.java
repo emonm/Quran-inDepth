@@ -171,7 +171,12 @@ public class ExplorerActivity extends AppCompatActivity
         txt_rukus.setText(""+rukus);
         txt_relevation.setText(""+relevation);
         txt_parah.setText(""+parah);
-        txt_sajda.setText(""+sajda_count);
+
+        if (sajda_count.equals("null")) {
+            txt_sajda.setText("- -");
+        }else {
+            txt_sajda.setText("" + sajda_count);
+        }
         mChapterDetailsListAdapter=new ChapterDetailsListAdapter(mContext,R.layout.row_chpater_details, AllQuranList.getAllQuranList());
         ListView listView=(ListView)this.findViewById(R.id.list_quran_verses);
         listView.setAdapter(mChapterDetailsListAdapter);
@@ -207,7 +212,7 @@ public class ExplorerActivity extends AppCompatActivity
             rukus = "1";
             relevation = "5";
             parah ="0";
-            sajda_count = "";
+            sajda_count = "- -";
             dataBaseHelper.caper_details(quran_id);
         }
     }

@@ -197,6 +197,7 @@
                         android:layout_width="30dp"
                         android:layout_marginLeft="3dp"
                         android:layout_height="wrap_content"
+                        android:text="--"
                         android:textColor="@color/colorToolBar"
                         android:textSize="13sp" />
                 </LinearLayout>
