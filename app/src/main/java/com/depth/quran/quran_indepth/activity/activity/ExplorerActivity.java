@@ -1,5 +1,6 @@
 package com.depth.quran.quran_indepth.activity.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,21 +16,45 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.depth.quran.quran_indepth.R;
 import com.depth.quran.quran_indepth.activity.adapter.BaseAdpterList;
+import com.depth.quran.quran_indepth.activity.adapter.ChapterDetailsListAdapter;
+import com.depth.quran.quran_indepth.activity.dbhelper.DataBaseHelper;
+import com.depth.quran.quran_indepth.activity.holder.AllQuranList;
+import com.depth.quran.quran_indepth.activity.holder.Expolorar_holder;
+import com.depth.quran.quran_indepth.activity.model.QuranListModel;
+
+import java.io.IOException;
+import java.util.Vector;
 
 public class ExplorerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    Context mContext;
     ListView lv;
     BaseAdpterList baseAdpterList;
     ImageView facebookLink,youtubeLink,googlePluseLink,websiteLink;
+
+    String name;
+    String quran_id;
+    String verses,relevation,rukus,parah,arabic_name,sajda_count;
+    DataBaseHelper dataBaseHelper;
+    TextView txt_chapter_name,txt_verses,txt_rukus,txt_relevation,
+            txt_parah,txt_serail_num,txt_arabic,txt_sajda;
+
+    ChapterDetailsListAdapter mChapterDetailsListAdapter;
+    TextView txt_chapter_title;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_explorer);
+        setContentView(R.layout.activity_quran_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mContext=this;
 
         lv=(ListView)findViewById(R.id.left_drawer);
         facebookLink=(ImageView)findViewById(R.id.facebook);
@@ -124,7 +149,69 @@ public class ExplorerActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        datalode();
+        initUI();
     }
+
+    private void initUI() {
+
+        txt_serail_num=(TextView)this.findViewById(R.id.Serail_number);
+        txt_chapter_title=(TextView)this.findViewById(R.id.ChapterNameEnTextView);
+        txt_arabic=(TextView)this.findViewById(R.id.ChapterNameArTextView);
+        txt_verses=(TextView)this.findViewById(R.id.verses_number);
+        txt_rukus=(TextView)this.findViewById(R.id.rukus_number);
+        txt_relevation=(TextView)this.findViewById(R.id.Revelation_number);
+        txt_parah=(TextView)this.findViewById(R.id.parah_number);
+        txt_sajda=(TextView)this.findViewById(R.id.sajda_number);
+        txt_serail_num.setText(""+quran_id);
+        txt_chapter_title.setText(""+name);
+        txt_arabic.setText(""+arabic_name);
+        txt_verses.setText(""+verses);
+        txt_rukus.setText(""+rukus);
+        txt_relevation.setText(""+relevation);
+        txt_parah.setText(""+parah);
+        txt_sajda.setText(""+sajda_count);
+        mChapterDetailsListAdapter=new ChapterDetailsListAdapter(mContext,R.layout.row_chpater_details, AllQuranList.getAllQuranList());
+        ListView listView=(ListView)this.findViewById(R.id.list_quran_verses);
+        listView.setAdapter(mChapterDetailsListAdapter);
+        mChapterDetailsListAdapter.notifyDataSetChanged();
+
+    }
+
+    public void datalode(){
+        try {
+            dataBaseHelper=new DataBaseHelper(mContext, "AnalyzeQuran1");
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(mContext,"not",Toast.LENGTH_LONG).show();
+        }
+        Vector <QuranListModel> models= Expolorar_holder.getAllQuranList();
+        if (models.size()>0) {
+            quran_id = models.get(0).getChapter_id();
+            name = models.get(0).getChapter_english();
+            arabic_name = models.get(0).getChapter_arabic();
+            verses = models.get(0).getVerses();
+            rukus = models.get(0).getRuku_Count();
+            relevation = models.get(0).getRevelation_Number();
+            parah = models.get(0).getParas();
+            sajda_count = models.get(0).getSajdaVerses();
+            dataBaseHelper.caper_details(quran_id);
+
+        }
+        else {
+            quran_id = "1";
+            name = "The Opening";
+            arabic_name = "الْفَاتِحَة";
+            verses = "";
+            rukus = "1";
+            relevation = "5";
+            parah ="0";
+            sajda_count = "";
+            dataBaseHelper.caper_details(quran_id);
+        }
+    }
+
 
     @Override
     public void onBackPressed() {

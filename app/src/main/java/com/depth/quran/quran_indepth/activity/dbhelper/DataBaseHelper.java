@@ -13,6 +13,7 @@ import com.depth.quran.quran_indepth.activity.holder.AllLetters;
 import com.depth.quran.quran_indepth.activity.holder.AllLetters_detl;
 import com.depth.quran.quran_indepth.activity.holder.AllQuranList;
 import com.depth.quran.quran_indepth.activity.holder.Allword;
+import com.depth.quran.quran_indepth.activity.holder.Expolorar_holder;
 import com.depth.quran.quran_indepth.activity.holder.test;
 import com.depth.quran.quran_indepth.activity.model.ChapterListModel;
 import com.depth.quran.quran_indepth.activity.model.QuranListModel;
@@ -23,7 +24,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Vector;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
     private Context mycontext;
@@ -127,13 +127,78 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
+    //    public void getChapteList() {
+//        AllChapterList.allChapterList.removeAllElements();
+//        String sqlTables = " Chapters ";
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = db.rawQuery("SELECT * FROM " + sqlTables, null);
+//        ChapterListModel model;
+//        if (cursor.moveToFirst()) {
+//            do {
+//                model = new ChapterListModel();
+//                model.setChapter_arabic("" + cursor.getString(cursor.getColumnIndex("NameAr")));
+//                model.setChapter_english("" + cursor.getString(cursor.getColumnIndex("NameEn")));
+//                model.setRevelation_Number("" + cursor.getString(cursor.getColumnIndex("RevelationNumber")));
+//                model.setRuku_Count("" + cursor.getString(cursor.getColumnIndex("RukuCount")));
+//                model.setVerses("" + cursor.getString(cursor.getColumnIndex("VerseCount")));
+//                model.setParas("" + cursor.getString(cursor.getColumnIndex("ParahsFall")));
+//                model.setMuqattaat("" + cursor.getString(cursor.getColumnIndex("IsMuqattaat")));
+//                model.setMtid("" + String.valueOf(cursor.getInt(cursor.getColumnIndex("MuqattaatId"))));
+//                model.setCum_Verses("" + cursor.getString(cursor.getColumnIndex("CVersesCount")));
+//                model.setSajdaVerses("" + cursor.getString(cursor.getColumnIndex("SajdaVerses")));
+//                model.setChapter_id("" + cursor.getString(cursor.getColumnIndex("ChapterId")));
+//                AllChapterList.setChapterList(model);
+//            }
+//            while (cursor.moveToNext());
+//        }
+//        cursor.close();
+//        db.close();
+//
+//
+//        Log.w("Total Size", "are" + AllChapterList.getAllChapterList().size());
+//    }
+//
+//    public String getChaptemn(String aa) {
+//        String sqlTables = " Muqattaats ";
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = db.rawQuery("SELECT * FROM " + sqlTables + " WHERE MuqattaatId = '" + aa + "'", null);
+//        String a = null;
+//        if (cursor.moveToFirst()) {
+//            do {
+//                a = cursor.getString(cursor.getColumnIndex("MuqattaatWordAr"));
+//            }
+//            while (cursor.moveToNext());
+//        }
+//        cursor.close();
+//        db.close();
+//        return a;
+//
+//    }
+//
+//    public void caper_details(String capter) {
+//        String sqlTables = " Verses ";
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = db.rawQuery("SELECT * FROM " + sqlTables + " where " + " ChapterId =" + capter, null);
+//        QuranListModel model;
+//        if (cursor.moveToFirst()) {
+//            do {
+//                model = new QuranListModel();
+//                model.setChapSerialNumber(cursor.getString(cursor.getColumnIndex("ChapSerialNumber")));
+//                model.setVerseAr(cursor.getString(cursor.getColumnIndex("VerseAr")));
+//                model.setVerseEn(cursor.getString(cursor.getColumnIndex("VerseEn")));
+//                model.setChapter_id(cursor.getString(cursor.getColumnIndex("ChapterId")));
+//                AllQuranList.setAllQuranList(model);
+//            } while (cursor.moveToNext());
+//        }
+//        cursor.close();
+//        db.close();
+//    }
     public void getChapteList() {
         AllChapterList.allChapterList.removeAllElements();
         String sqlTables = " Chapters ";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + sqlTables, null);
-        ChapterListModel model = null;
-
+        ChapterListModel model;
         if (cursor.moveToFirst()) {
             do {
                 model = new ChapterListModel();
@@ -154,6 +219,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         db.close();
+
+
         Log.w("Total Size", "are" + AllChapterList.getAllChapterList().size());
     }
 
@@ -195,6 +262,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
+
+
+
     public void chapter_arabic_details(String capter) {
         String sqlTables = " Verses ";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -212,7 +282,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
     }
-
     public void leter() {
         AllLetters.allleterid.removeAllElements();
         String sqlTables = "AbjadLetters";
@@ -234,29 +303,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public Vector<ChapterListModel> searchEmployee(String keyword) {
-        Vector<ChapterListModel> employees = new Vector<ChapterListModel>();
-        SQLiteDatabase db = this.getReadableDatabase();
-        String sqlTables = "Chapters";
-        Cursor cursor = db.query(sqlTables, null, "NameEn LIKE '%" + keyword + "%'", null, null,
-                null, null);
 
-        if (cursor != null && cursor.getCount() > 0) {
-            cursor.moveToFirst();
-            for (int i = 0; i < cursor.getCount(); i++) {
-                //
-                int id = cursor.getInt(cursor.getColumnIndex("ChapterId"));
-                String name = cursor.getString(cursor
-                        .getColumnIndex("NameEn"));
-                ChapterListModel e = new ChapterListModel(id,name);
-                employees.add(e);
-                cursor.moveToNext();
-            }
-        }
-        cursor.close();
-        db.close();
-        return employees;
-    }
     public void leterayat(String a) {
         AllLetters_detl.allleter_det.removeAllElements();
         String sqlTables = "RootWords";
@@ -393,6 +440,23 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return a;
     }
 
+    public void lodetoexplorae(String id,String title,String aravic,String verses,
+                               String rukus,String relevation,String parah,String sajda) {
+        Expolorar_holder.removeallQuranlist();
+        QuranListModel model;
+        model=new QuranListModel();
+        model.setChapter_id(id);
+        model.setChapter_english(title);
+        model.setChapter_arabic(aravic);
+        model.setCum_Verses(verses);
+        model.setRuku_Count(rukus);
+        model.setRevelation_Number(relevation);
+        model.setParas(parah);
+        model.setSajdaVerses(sajda);
+
+        Expolorar_holder.setAllQuranList(model);
+
+    }
 
 
 }

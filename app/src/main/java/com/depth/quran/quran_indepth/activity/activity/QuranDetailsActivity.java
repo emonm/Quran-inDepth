@@ -49,8 +49,7 @@ public class QuranDetailsActivity extends AppCompatActivity implements Navigatio
     Context mContext;
     DataBaseHelper dataBaseHelper;
     TextView txt_chapter_name,txt_verses,txt_rukus,txt_relevation,
-            txt_parah,txt_serail_num,txt_arabic,txt_sajda
-            ;
+            txt_parah,txt_serail_num,txt_arabic,txt_sajda;
     String name;
     String quran_id;
     String verses,relevation,rukus,parah,arabic_name,sajda_count;
@@ -184,6 +183,8 @@ public class QuranDetailsActivity extends AppCompatActivity implements Navigatio
         relevation = intent.getExtras().getString("relevation");
         parah=intent.getExtras().getString("parah");
         sajda_count=intent.getExtras().getString("sajda");
+
+        dataBaseHelper.lodetoexplorae(quran_id,name,arabic_name,verses,rukus,relevation,parah,sajda_count);
         dataBaseHelper.caper_details(quran_id);
     }
     @Override
