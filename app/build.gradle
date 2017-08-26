@@ -29,6 +29,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support:design:26.+'
     compile 'com.android.support:support-v4:26.+'
-    debugCompile 'com.amitshekhar.android:debug-db:1.0.0'
     testCompile 'junit:junit:4.12'
+    debugCompile 'com.amitshekhar.android:debug-db:1.0.0'
 }

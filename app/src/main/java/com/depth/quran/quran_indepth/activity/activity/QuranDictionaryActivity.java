@@ -95,6 +95,10 @@ public class QuranDictionaryActivity extends AppCompatActivity
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(i==0){
+                    Intent intent=new Intent(QuranDictionaryActivity.this,AnalyzeQuranActivity.class);
+                    startActivity(intent);
+                }
                 if(i==1){
                     Intent intent=new Intent(QuranDictionaryActivity.this,ExplorerActivity.class);
                     startActivity(intent);

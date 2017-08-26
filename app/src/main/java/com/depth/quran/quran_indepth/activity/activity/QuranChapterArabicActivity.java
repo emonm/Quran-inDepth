@@ -77,6 +77,10 @@ public class QuranChapterArabicActivity extends AppCompatActivity
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(i==0){
+                    Intent intent=new Intent(QuranChapterArabicActivity.this,AnalyzeQuranActivity.class);
+                    startActivity(intent);
+                }
                 if(i==1){
                     Intent intent=new Intent(QuranChapterArabicActivity.this,ExplorerActivity.class);
                     startActivity(intent);

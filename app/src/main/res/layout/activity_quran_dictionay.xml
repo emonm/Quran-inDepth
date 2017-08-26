@@ -21,14 +21,12 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header_main"
         >
-
-
         <ListView
             android:id="@+id/left_drawer"
             android:layout_width="match_parent"
             android:divider="#DAE3DE"
             android:dividerHeight="2px"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="140dp"
             android:layout_height="wrap_content"
             >
         </ListView>
@@ -62,7 +60,7 @@
             android:id="@+id/heade"
             android:layout_width="fill_parent"
             android:layout_height="2dp"
-            android:layout_marginTop="457dp"
+            android:layout_marginTop="455dp"
             android:layout_below="@+id/header_view"
             android:background="#DAE3DE" />
 

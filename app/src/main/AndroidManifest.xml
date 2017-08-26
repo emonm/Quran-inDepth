@@ -23,49 +23,43 @@
         <activity
             android:name=".activity.activity.ExplorerActivity"
             android:label="Explorer"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.activity.QuranChapterActivity"
             android:label="Quran Chapters"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".activity.activity.QuranDetailsActivity"
             android:label="Quran Chapters"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".activity.activity.QuranDictionaryActivity"
             android:label="Quran Dictionary"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".activity.activity.BookmarksActivity"
             android:label="Bookmarks"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.activity.StartTourActivity"
             android:label="Start Tour"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         >
         <activity
             android:name=".activity.activity.AboutActivity"
             android:label="About"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.activity.SettingActivity"
             android:label="Setting"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.activity.QuranChapterArabicActivity"
             android:label="Setting"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
-        </activity>
-
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activity.activity.AnalyzeQuranActivity"
+            android:label="Analyze quran"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

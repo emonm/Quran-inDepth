@@ -17,33 +17,26 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.depth.quran.quran_indepth.R;
 import com.depth.quran.quran_indepth.activity.adapter.BaseAdpterList;
 import com.depth.quran.quran_indepth.activity.adapter.ChapterDetailsListAdapter;
-import com.depth.quran.quran_indepth.activity.adapter.ChapterListAdapter;
 import com.depth.quran.quran_indepth.activity.dbhelper.DataBaseHelper;
-import com.depth.quran.quran_indepth.activity.holder.AllChapterList;
 import com.depth.quran.quran_indepth.activity.holder.AllQuranList;
 import com.depth.quran.quran_indepth.activity.holder.Expolorar_holder;
-import com.depth.quran.quran_indepth.activity.model.ChapterListModel;
 import com.depth.quran.quran_indepth.activity.model.QuranListModel;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Vector;
 
-public class ExplorerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener ,
-        SearchView.OnQueryTextListener,AdapterView.OnItemSelectedListener{
+public class AnalyzeQuranActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener ,SearchView.OnQueryTextListener,AdapterView.OnItemSelectedListener{
     Context mContext;
     ListView lv;
     BaseAdpterList baseAdpterList;
@@ -51,11 +44,6 @@ public class ExplorerActivity extends AppCompatActivity
     EditText editText;
     String name;
     String quran_id;
-    Vector<ChapterListModel> vc;
-    ChapterListAdapter chapterListAdapter;
-    Spinner spinner;
-    ArrayAdapter<String> spinnerArrayAdapter;
-
     String verses,relevation,rukus,parah,arabic_name,sajda_count;
     DataBaseHelper dataBaseHelper;
     TextView txt_chapter_name,txt_verses,txt_rukus,txt_relevation,
@@ -91,35 +79,35 @@ public class ExplorerActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i==0){
-                    Intent intent=new Intent(ExplorerActivity.this,AnalyzeQuranActivity.class);
+                    Intent intent=new Intent(AnalyzeQuranActivity.this,AnalyzeQuranActivity.class);
                     startActivity(intent);
                 }
                 if(i==1){
-                    Intent intent=new Intent(ExplorerActivity.this,ExplorerActivity.class);
+                    Intent intent=new Intent(AnalyzeQuranActivity.this,ExplorerActivity.class);
                     startActivity(intent);
                 }
                 if(i==2){
-                    Intent intent=new Intent(ExplorerActivity.this,QuranChapterActivity.class);
+                    Intent intent=new Intent(AnalyzeQuranActivity.this,QuranChapterActivity.class);
                     startActivity(intent);
                 }
                 if(i==3){
-                    Intent intent=new Intent(ExplorerActivity.this,QuranDictionaryActivity.class);
+                    Intent intent=new Intent(AnalyzeQuranActivity.this,QuranDictionaryActivity.class);
                     startActivity(intent);
                 }
                 if(i==4){
-                    Intent intent=new Intent(ExplorerActivity.this,BookmarksActivity.class);
+                    Intent intent=new Intent(AnalyzeQuranActivity.this,BookmarksActivity.class);
                     startActivity(intent);
                 }
                 if(i==5){
-                    Intent intent=new Intent(ExplorerActivity.this,StartTourActivity.class);
+                    Intent intent=new Intent(AnalyzeQuranActivity.this,StartTourActivity.class);
                     startActivity(intent);
                 }
                 if(i==6){
-                    Intent intent=new Intent(ExplorerActivity.this,AboutActivity.class);
+                    Intent intent=new Intent(AnalyzeQuranActivity.this,AboutActivity.class);
                     startActivity(intent);
                 }
                 if(i==7){
-                    Intent intent=new Intent(ExplorerActivity.this,SettingActivity.class);
+                    Intent intent=new Intent(AnalyzeQuranActivity.this,SettingActivity.class);
                     startActivity(intent);
                 }
             }
@@ -135,30 +123,30 @@ public class ExplorerActivity extends AppCompatActivity
             }
         });
         youtubeLink.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+            @Override
+            public void onClick(View view) {
                 String url ="https://www.youtube.com/user/maboussa";
                 Uri uriUrl = Uri.parse(url);
                 Intent facebookLink = new Intent(Intent.ACTION_VIEW, uriUrl);
                 startActivity(facebookLink);
-                    }
+            }
         });
         googlePluseLink.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                 String url ="https://plus.google.com/+KanatEleyoun";
-                 Uri uriUrl = Uri.parse(url);
-                 Intent facebookLink = new Intent(Intent.ACTION_VIEW, uriUrl);
-                 startActivity(facebookLink);
-                            }
+            @Override
+            public void onClick(View view) {
+                String url ="https://plus.google.com/+KanatEleyoun";
+                Uri uriUrl = Uri.parse(url);
+                Intent facebookLink = new Intent(Intent.ACTION_VIEW, uriUrl);
+                startActivity(facebookLink);
+            }
         });
-         websiteLink.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                 String url ="https://www.eleyoun.com";
-                 Uri uriUrl = Uri.parse(url);
-                 Intent facebookLink = new Intent(Intent.ACTION_VIEW, uriUrl);
-                  startActivity(facebookLink);
+        websiteLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url ="https://www.eleyoun.com";
+                Uri uriUrl = Uri.parse(url);
+                Intent facebookLink = new Intent(Intent.ACTION_VIEW, uriUrl);
+                startActivity(facebookLink);
             }
         });
 
@@ -172,7 +160,6 @@ public class ExplorerActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         datalode();
-        quranSpineer();
         initUI();
     }
 
@@ -239,7 +226,6 @@ public class ExplorerActivity extends AppCompatActivity
         }
     }
 
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -250,6 +236,13 @@ public class ExplorerActivity extends AppCompatActivity
         }
     }
 
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -299,16 +292,6 @@ public class ExplorerActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-
     @Override
     public boolean onQueryTextSubmit(String query) {
         return false;
@@ -327,28 +310,6 @@ public class ExplorerActivity extends AppCompatActivity
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
-    private void quranSpineer(){
-        spinner = (Spinner)findViewById(R.id.spineer);
-
-        ArrayList<String> mylist = new ArrayList<String>();
-        //        AllLetters all=new AllLetters();
-        vc= AllChapterList.getAllChapterList();
-
-        for (int i=0;i<vc.size();i++){
-            mylist.add(vc.get(i).getChapter_english());
-        }
-        // Application of the Array to the Spinner
-        spinnerArrayAdapter = new ArrayAdapter<String>(mContext,R.layout.spinner_item, mylist);
-
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
-        // The drop down view
-        spinner.setAdapter(spinnerArrayAdapter);
-        spinnerArrayAdapter.notifyDataSetChanged();
-        spinner.setOnItemSelectedListener(this);
-
-
 
     }
 }

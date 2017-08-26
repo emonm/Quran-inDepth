@@ -45,6 +45,10 @@ public class SettingActivity extends AppCompatActivity
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(i==0){
+                    Intent intent=new Intent(SettingActivity.this,AnalyzeQuranActivity.class);
+                    startActivity(intent);
+                }
                 if(i==1){
                     Intent intent=new Intent(SettingActivity.this,ExplorerActivity.class);
                     startActivity(intent);
@@ -90,7 +94,7 @@ public class SettingActivity extends AppCompatActivity
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean ifCleaked) {
                 if(ifCleaked){
-                    Toast.makeText(getApplicationContext(),"On",Toast.LENGTH_SHORT).show();
+
                 }
                 else {
                     Toast.makeText(getApplicationContext(),"off",Toast.LENGTH_SHORT).show();

@@ -92,6 +92,10 @@ public class QuranDetailsActivity extends AppCompatActivity implements Navigatio
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        if(i==0){
+                            Intent intent=new Intent(QuranDetailsActivity.this,AnalyzeQuranActivity.class);
+                            startActivity(intent);
+                        }
                         if(i==1){
                             Intent intent=new Intent(QuranDetailsActivity.this,ExplorerActivity.class);
                             startActivity(intent);
@@ -256,7 +260,7 @@ public class QuranDetailsActivity extends AppCompatActivity implements Navigatio
         vc= AllChapterList.getAllChapterList();
 
         for (int i=0;i<vc.size();i++){
-            mylist.add(vc.get(i).getChapter_english());
+            mylist.add(vc.get(i).getChapter_arabic());
         }
         // Application of the Array to the Spinner
          spinnerArrayAdapter = new ArrayAdapter<String>(mContext,R.layout.spinner_item, mylist);
@@ -266,8 +270,6 @@ public class QuranDetailsActivity extends AppCompatActivity implements Navigatio
         spinner.setAdapter(spinnerArrayAdapter);
         spinnerArrayAdapter.notifyDataSetChanged();
         spinner.setOnItemSelectedListener(this);
-
-
 
     }
 

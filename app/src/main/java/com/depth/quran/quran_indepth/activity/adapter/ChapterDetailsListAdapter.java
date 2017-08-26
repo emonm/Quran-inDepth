@@ -2,6 +2,8 @@ package com.depth.quran.quran_indepth.activity.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 import com.depth.quran.quran_indepth.R;
 import com.depth.quran.quran_indepth.activity.dbhelper.DataBaseHelper;
 import com.depth.quran.quran_indepth.activity.dbhelper.Database_foverate;
+import com.depth.quran.quran_indepth.activity.holder.AllChapterList;
 import com.depth.quran.quran_indepth.activity.holder.AllQuranList;
 import com.depth.quran.quran_indepth.activity.model.ChapterListModel;
 import com.depth.quran.quran_indepth.activity.model.QuranListModel;
@@ -55,6 +58,7 @@ public class ChapterDetailsListAdapter extends ArrayAdapter<QuranListModel> {
             holder.VerseEn = (TextView) convertView.findViewById(R.id.txt_Verse_En);
             holder.VerseAr = (TextView) convertView.findViewById(R.id.txt_Verse_Ar);
             holder.bookmarh=(ImageView)convertView.findViewById(R.id.bookmarh);
+            holder.share=(ImageView)convertView.findViewById(R.id.share);
 
             convertView.setTag(holder);
         } else {
@@ -72,10 +76,25 @@ public class ChapterDetailsListAdapter extends ArrayAdapter<QuranListModel> {
                 fa.insaall____(model.get(position).getChapter_id(),model.get(position).getVerseAr(),
                         model.get(position).getChapter_id()+":"+model.get(position).getChapSerialNumber());
                 Toast.makeText(mContext,""+model.get(position).getChapter_id()+":"+model.get(position).getChapSerialNumber()
-                        +"is save as fevoat",Toast.LENGTH_SHORT).show();
+                        +"Bookmarks Added",Toast.LENGTH_SHORT).show();
             }
         });
 
+        holder.share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.w("shaire", "intent are" + AllQuranList.getQuranlist(position).getVerseAr());
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(android.content.Intent.EXTRA_TEXT,
+                        AllQuranList.getQuranlist(position).getChapSerialNumber()
+                                +"\n"
+                                + AllQuranList.getQuranlist(position).getVerseAr()
+                        +"\n"+AllQuranList.getQuranlist(position).getVerseEn());
+                mContext.startActivity(shareIntent);
+            }
+        });
         return convertView;
     }
 
@@ -83,7 +102,7 @@ public class ChapterDetailsListAdapter extends ArrayAdapter<QuranListModel> {
         TextView ChapSerialNumber;
         TextView VerseEn;
         TextView VerseAr;
-        ImageView bookmarh;
+        ImageView bookmarh,share;
     }
 
     private class CityFilter extends Filter {
@@ -138,5 +157,5 @@ public class ChapterDetailsListAdapter extends ArrayAdapter<QuranListModel> {
         }
         return filter;
     }
-    
+
 }
