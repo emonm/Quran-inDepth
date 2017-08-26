@@ -210,7 +210,9 @@ public class QuranDictionaryActivity extends AppCompatActivity
                 vv= Allword.getAllChapterList();
 
                 getSupportActionBar().setTitle(" ("+select_ayat+") "+vc_ayat.get(i).getChapter_leater_enhlish());
-                txt_detailfor.setText("The word ("+select_ayat+") "+vc_ayat.get(i).getChapter_leater_enhlish()+" "+
+                txt_detailfor.setText("The word "+vc_ayat.get(i).getChapter_leater_enhlish()+" ("+select_ayat+") "+
+
+
                 vv.size()+" times,in 1 derive forms");
 //               adapetlist();
 

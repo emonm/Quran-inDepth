@@ -213,6 +213,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 model.setCum_Verses("" + cursor.getString(cursor.getColumnIndex("CVersesCount")));
                 model.setSajdaVerses("" + cursor.getString(cursor.getColumnIndex("SajdaVerses")));
                 model.setChapter_id("" + cursor.getString(cursor.getColumnIndex("ChapterId")));
+                model.setIsMakki("" + cursor.getString(cursor.getColumnIndex("IsMakki")));
                 AllChapterList.setChapterList(model);
             }
             while (cursor.moveToNext());

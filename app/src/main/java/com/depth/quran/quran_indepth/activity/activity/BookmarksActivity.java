@@ -2,6 +2,7 @@ package com.depth.quran.quran_indepth.activity.activity;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -32,6 +34,8 @@ public class BookmarksActivity extends AppCompatActivity
     BaseAdpterList baseAdpterList;
     ImageView facebookLink,youtubeLink,googlePluseLink,websiteLink;
     Context mContext;
+    Database_foverate fev;
+    Fevoreat_ListAdapter febadp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -160,12 +164,58 @@ public class BookmarksActivity extends AppCompatActivity
     }
 
     void test(){
-        ListView aas=(ListView) this.findViewById(R.id.asa);
-        Database_foverate n=new Database_foverate(mContext);
-        n.getallfevorate();
-        Vector<foverat_model>aa=All_Foveratlit.getallfoveratlist();
-        Fevoreat_ListAdapter febadp=new Fevoreat_ListAdapter(mContext,R.layout.row_fevorat,aa);
-        aas.setAdapter(febadp);
+        ListView listView=(ListView) this.findViewById(R.id.asa);
+         fev=new Database_foverate(mContext);
+        fev.getallfevorate();
+        final Vector<foverat_model>aa=All_Foveratlit.getallfoveratlist();
+         febadp=new Fevoreat_ListAdapter(mContext,R.layout.row_fevorat,aa);
+        listView.setAdapter(febadp);
         febadp.notifyDataSetChanged();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                dialog_box(String.valueOf(aa.get(position).getId()));
+                febadp.notifyDataSetChanged();
+            }
+        });
+
+
+
     }
+
+    private void dialog_box(final String  a) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
+
+        // Setting Dialog Title
+        alertDialog.setTitle("Confirm Delete...");
+
+        // Setting Dialog Message
+        alertDialog.setMessage("Are you sure you want delete this?");
+
+        // Setting Icon to Dialog
+
+
+        // Setting Positive "Yes" Button
+        alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog,int which) {
+//                Toast.makeText(getApplicationContext(),""+a,Toast.LENGTH_SHORT).show();
+                fev=new Database_foverate(mContext);
+                fev.delete(a);
+                febadp.notifyDataSetChanged();
+
+            }
+        });
+
+        // Setting Negative "NO" Button
+        alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        // Showing Alert Message
+        alertDialog.show();
+
+    }
+
 }

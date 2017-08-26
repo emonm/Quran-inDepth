@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -59,6 +60,8 @@ public class QuranDetailsActivity extends AppCompatActivity implements Navigatio
     ChapterListAdapter chapterListAdapter;
     Spinner spinner;
     ArrayAdapter<String> spinnerArrayAdapter;
+    ImageView image_makki;
+    TextView txtmakki_madani;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,7 +155,8 @@ public class QuranDetailsActivity extends AppCompatActivity implements Navigatio
         txt_relevation=(TextView)this.findViewById(R.id.Revelation_number);
         txt_parah=(TextView)this.findViewById(R.id.parah_number);
         txt_sajda=(TextView)this.findViewById(R.id.sajda_number);
-
+        image_makki=(ImageView)this.findViewById(R.id.image_makki);
+        txtmakki_madani=(TextView)this.findViewById(R.id.txtmakki_madani);
     }
 
 
@@ -287,7 +291,7 @@ public class QuranDetailsActivity extends AppCompatActivity implements Navigatio
         sajda_count = model_list.getSajdaVerses();
         arabic_name = model_list.getChapter_arabic();
 
-        System.out.println("ddddddddddd    "+sajda_count);
+        System.out.println("ddddddddddd  "+sajda_count);
 
         dataBaseHelper.lodetoexplorae(quran_id,name,arabic_name,verses,rukus,relevation,parah,sajda_count);
         dataBaseHelper.caper_details(quran_id);
@@ -299,6 +303,14 @@ public class QuranDetailsActivity extends AppCompatActivity implements Navigatio
         txt_rukus.setText(""+rukus);
         txt_relevation.setText(""+relevation);
         txt_parah.setText(""+parah);
+
+        if (model_list.getIsMakki().equals("0")){
+            image_makki.setImageResource(R.drawable.madina_image);
+            txtmakki_madani.setText("Madani");
+        }else {
+            image_makki.setImageResource(R.drawable.makkah_image);
+            txtmakki_madani.setText("Makki");
+        }
         if (sajda_count.equals("null")) {
             txt_sajda.setText("- -");
         }else {

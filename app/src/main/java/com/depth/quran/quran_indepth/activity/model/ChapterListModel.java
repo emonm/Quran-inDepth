@@ -16,11 +16,19 @@ public class ChapterListModel {
     private String Muqattaat;
     private String Cum_Verses;
     private int id;
+    private String IsMakki;
     private String SajdaVerses;
     private String Mtid;
 
+    public String getIsMakki() {
+        return IsMakki;
+    }
 
-    public ChapterListModel(int id,String chapter_english){
+    public void setIsMakki(String isMakki) {
+        IsMakki = isMakki;
+    }
+
+    public ChapterListModel(int id, String chapter_english){
         this.id=id;
         this.chapter_english=chapter_english;
     }

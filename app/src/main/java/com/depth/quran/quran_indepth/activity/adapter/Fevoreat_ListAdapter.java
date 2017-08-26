@@ -2,10 +2,13 @@ package com.depth.quran.quran_indepth.activity.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,7 +61,7 @@ public class Fevoreat_ListAdapter extends ArrayAdapter<foverat_model> {
             holder.txt_fev_no = (TextView) convertView.findViewById(R.id.txt_fev_no);
             holder.txt_fev_chapter = (TextView) convertView.findViewById(R.id.txt_fev_chapter);
             holder.txt_fev_ayat = (TextView) convertView.findViewById(R.id.txt_fev_ayat);
-
+            holder.linear_fev=(LinearLayout)convertView.findViewById(R.id.linear_fev);
 
             convertView.setTag(holder);
         } else {
@@ -66,56 +69,66 @@ public class Fevoreat_ListAdapter extends ArrayAdapter<foverat_model> {
         }
         final Vector<foverat_model> model = All_Foveratlit.getallfoveratlist();
 
-
-
         holder.txt_fev_no.setText(model.get(position).getAyeat());
         holder.txt_fev_chapter.setText(  dataBaseHelper.searchchap( model.get(position).getChapter_arabic()));
         holder.txt_fev_ayat.setText(model.get(position).getArabic_details());
 
-
-//        View.OnClickListener leasenar=new View.OnClickListener() {
+//        holder.linear_fev.setOnClickListener(new View.OnClickListener() {
 //            @Override
-//            public void onClick(View v) {
-//                switch (v.getId()){
-//                    case R.id.Relative_foverat_del:
-//                        model_list=new QuranListModel();
-//                        model_list=All_Foveratlit.getAll_Foveratlit(position);
-//                        fov=new Database_foverate(mContext);
-//                        fov.delete(model_list.getChapter_id(),model_list.getAyeat());
-//                        update(model_list.getChapter_id(),model_list.getAyeat(),"0");
-//                        holder.Relative_foverat_del.setVisibility(View.GONE);
-//                        break;
-//                }
+//            public void onClick(View view) {
+//                dialog_box(String.valueOf(model.get(position).getId()));
+//
 //            }
-//        };
+//        });
+
 
         return convertView;
 
     }
-
-//    public void update(String chapter_id, String ayat, String vaue){
-//        try {
-//            dataBaseHelper=new DataBaseHelper(mContext, "DBMSalution");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            Toast.makeText(mContext,"not", Toast.LENGTH_LONG).show();
-//        }
-//
-//        dataBaseHelper.updatebook(chapter_id,ayat,vaue);
-//    }
-
-
 
     class ViewHolder {
 //        TextView txt_chapter_english;
         TextView txt_fev_no;
         TextView txt_fev_chapter;
         TextView txt_fev_ayat;
-
+        LinearLayout linear_fev;
 
 
     }
 
+    private void dialog_box(final String  a) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
+
+        // Setting Dialog Title
+        alertDialog.setTitle("Confirm Delete...");
+
+        // Setting Dialog Message
+        alertDialog.setMessage("Are you sure you want delete this?");
+
+        // Setting Icon to Dialog
+
+
+        // Setting Positive "Yes" Button
+        alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog,int which) {
+//                Toast.makeText(getApplicationContext(),""+a,Toast.LENGTH_SHORT).show();
+                fov=new Database_foverate(mContext);
+                fov.delete(a);
+
+
+            }
+        });
+
+        // Setting Negative "NO" Button
+        alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        // Showing Alert Message
+        alertDialog.show();
+
+    }
 
 
 }

@@ -7,7 +7,7 @@ package com.depth.quran.quran_indepth.activity.model;
 public class foverat_model {
     String ayeat ;
     String  arabic_details;
-//    String  bangla_details;
+    String  id;
 //    String  english_details;
     private String chapter_id;
 //    private String chapter_bangla;
@@ -16,6 +16,14 @@ public class foverat_model {
 //    private String mideafile;
 //    private String node;
 
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getChapter_id() {
         return chapter_id;

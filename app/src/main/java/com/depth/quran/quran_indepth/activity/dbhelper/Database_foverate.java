@@ -92,6 +92,7 @@ public class Database_foverate extends SQLiteOpenHelper {
                 model.setChapter_arabic(cursor.getString(cursor.getColumnIndex(KEY_chaptername)));
                 model.setArabic_details(cursor.getString(cursor.getColumnIndex(KEY_chapter_detils)));
                 model.setAyeat(cursor.getString(cursor.getColumnIndex(KEY_ayatno)));
+                model.setId(cursor.getString(cursor.getColumnIndex(KEY_id)));
 
                 All_Foveratlit.setallfoveratlist(model);
             } while (cursor.moveToNext());
@@ -138,6 +139,13 @@ public class Database_foverate extends SQLiteOpenHelper {
         db.close();
         return s1;
     }
+    public void delete(String time) {
+        String where = KEY_id + " = ?";
+        String[] whereArgs = { String.valueOf(time) };
 
+        SQLiteDatabase db=this.getWritableDatabase();
+        db.delete(TABLE_CONTACTS, where, whereArgs);
+
+    }
 
 }
