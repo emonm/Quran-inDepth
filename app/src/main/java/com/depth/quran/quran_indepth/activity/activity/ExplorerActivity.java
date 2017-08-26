@@ -387,7 +387,6 @@ public class ExplorerActivity extends AppCompatActivity
         spinnerArrayAdapter = new ArrayAdapter<String>(mContext,R.layout.spinner_item, mylist);
 
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
-        // The drop down view
         spinner.setAdapter(spinnerArrayAdapter);
         spinnerArrayAdapter.notifyDataSetChanged();
         spinner.setOnItemSelectedListener(this);

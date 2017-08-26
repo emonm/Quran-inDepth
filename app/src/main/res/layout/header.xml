@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:background="@color/BgLightColor"
+    android:padding="10dp"
     android:orientation="vertical"
      >
 
@@ -11,11 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:textColor="@color/black"
-        android:drawablePadding="10dp"
         android:text="sdfsdf"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="7dp"
         android:layout_marginBottom="10dp"
-        android:textSize="20sp"
+        android:textSize="17sp"
         />
 
 </LinearLayout>

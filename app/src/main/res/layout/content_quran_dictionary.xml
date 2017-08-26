@@ -6,8 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.depth.quran.quran_indepth.activity.activity.ExplorerActivity"
@@ -18,29 +16,37 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:orientation="horizontal"
-        android:background="#ffffff">
+        >
 
         <Spinner
             android:id="@+id/Spb1"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="fill_parent"
-            android:background="@android:color/transparent"
-            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:background="@color/BgLightColor"
             android:gravity="center_vertical"
             />
 
         <Spinner
             android:id="@+id/Spblood_name"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="fill_parent"
-            android:background="@android:color/transparent"
-            android:layout_gravity="center_vertical"
-            android:gravity="center_vertical"
-            />
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="50dp"
+            android:layout_weight="1"
+            android:background="@color/BgLightColor"
+             />
 
     </LinearLayout>
+    <View
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/header_view"
+        android:layout_marginBottom="2dp"
+        android:background="@color/colorToolBar" />
 
     <TextView
         android:id="@+id/txt_detailfor"
@@ -48,15 +54,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:textSize="22sp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"/>
+        android:textSize="17sp"
+        android:layout_marginBottom="13dp"
+        android:layout_marginTop="15dp"/>
+
+    <View
+        android:id="@+id/heade"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="105dp"
+        android:layout_marginBottom="3dp"
+        android:layout_below="@+id/header_view"
+        android:background="@color/colorToolBar" />
     <ExpandableListView
         android:id="@+id/listword"
+        android:layout_marginTop="5dp"
         android:layout_below="@+id/txt_detailfor"
         android:layout_width="match_parent"
+        android:divider="@color/colorToolBar"
+        android:dividerHeight="2px"
         android:layout_height="match_parent">
-
     </ExpandableListView>
 
 
