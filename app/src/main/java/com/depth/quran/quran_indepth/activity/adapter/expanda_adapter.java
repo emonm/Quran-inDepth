@@ -169,7 +169,6 @@ public class expanda_adapter extends BaseExpandableListAdapter {
         Spannable s = (Spannable)child_text.getText();
         while (match.find()) {
             s.setSpan(new ForegroundColorSpan(0xFFFF0000), match.start(), (match.end()-1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
         }
 
         txt_mining.setText(child.get(this.header.get(i)).get(i1).getMeaningEng());
