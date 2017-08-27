@@ -51,30 +51,37 @@ public class AboutActivity extends AppCompatActivity
                 if(i==0){
                     Intent intent=new Intent(AboutActivity.this,AnalyzeQuranActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 if(i==1){
                     Intent intent=new Intent(AboutActivity.this,ExplorerActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 if(i==2){
                     Intent intent=new Intent(AboutActivity.this,QuranChapterActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 if(i==3){
                     Intent intent=new Intent(AboutActivity.this,QuranDictionaryActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 if(i==4){
                     Intent intent=new Intent(AboutActivity.this,BookmarksActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 if(i==5){
                     Intent intent=new Intent(AboutActivity.this,AboutActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 if(i==6){
                     Intent intent=new Intent(AboutActivity.this,SettingActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             }
         });
@@ -133,6 +140,7 @@ public class AboutActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+        this.startActivity(new Intent(AboutActivity.this,ExplorerActivity.class));
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

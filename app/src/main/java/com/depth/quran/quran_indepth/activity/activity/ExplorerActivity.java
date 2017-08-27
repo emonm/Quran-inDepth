@@ -95,30 +95,37 @@ public class ExplorerActivity extends AppCompatActivity
                 if(i==0){
                     Intent intent=new Intent(ExplorerActivity.this,AnalyzeQuranActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 if(i==1){
                     Intent intent=new Intent(ExplorerActivity.this,ExplorerActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 if(i==2){
                     Intent intent=new Intent(ExplorerActivity.this,QuranChapterActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 if(i==3){
                     Intent intent=new Intent(ExplorerActivity.this,QuranDictionaryActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 if(i==4){
                     Intent intent=new Intent(ExplorerActivity.this,BookmarksActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 if(i==5){
                     Intent intent=new Intent(ExplorerActivity.this,AboutActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 if(i==6){
                     Intent intent=new Intent(ExplorerActivity.this,SettingActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             }
         });

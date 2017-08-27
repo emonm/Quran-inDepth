@@ -52,30 +52,37 @@ public class SettingActivity extends AppCompatActivity
                 if(i==0){
                     Intent intent=new Intent(SettingActivity.this,AnalyzeQuranActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 if(i==1){
                     Intent intent=new Intent(SettingActivity.this,ExplorerActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 if(i==2){
                     Intent intent=new Intent(SettingActivity.this,QuranChapterActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 if(i==3){
                     Intent intent=new Intent(SettingActivity.this,QuranDictionaryActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 if(i==4){
                     Intent intent=new Intent(SettingActivity.this,BookmarksActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 if(i==5){
                     Intent intent=new Intent(SettingActivity.this,AboutActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 if(i==6){
                     Intent intent=new Intent(SettingActivity.this,SettingActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             }
         });
@@ -113,6 +120,7 @@ public class SettingActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+        this.startActivity(new Intent(SettingActivity.this,ExplorerActivity.class));
     }
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

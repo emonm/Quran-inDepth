@@ -4,36 +4,31 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.SearchView;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Spinner;
 
 import com.depth.quran.quran_indepth.R;
 import com.depth.quran.quran_indepth.activity.adapter.BaseAdpterList;
 import com.depth.quran.quran_indepth.activity.adapter.ChapterListAdapter;
 import com.depth.quran.quran_indepth.activity.dbhelper.DataBaseHelper;
 import com.depth.quran.quran_indepth.activity.holder.AllChapterList;
-import com.depth.quran.quran_indepth.activity.holder.AllLetters;
 import com.depth.quran.quran_indepth.activity.model.ChapterListModel;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Vector;
 
 public class QuranChapterActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,SearchView.OnQueryTextListener{
@@ -76,6 +71,7 @@ public class QuranChapterActivity extends AppCompatActivity
                         if(i==0){
                             Intent intent=new Intent(QuranChapterActivity.this,AnalyzeQuranActivity.class);
                             startActivity(intent);
+                            finish();
                         }
                         if(i==1){
                             Intent intent=new Intent(QuranChapterActivity.this,ExplorerActivity.class);
@@ -221,6 +217,7 @@ public class QuranChapterActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+        this.startActivity(new Intent(QuranChapterActivity.this,ExplorerActivity.class));
     }
 
     @Override
