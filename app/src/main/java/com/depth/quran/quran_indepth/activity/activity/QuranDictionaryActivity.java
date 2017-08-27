@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
@@ -23,15 +23,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.depth.quran.quran_indepth.R;
-import com.depth.quran.quran_indepth.activity.adapter.abcd;
 import com.depth.quran.quran_indepth.activity.adapter.BaseAdpterList;
 import com.depth.quran.quran_indepth.activity.adapter.Wordlist;
+import com.depth.quran.quran_indepth.activity.adapter.abcd;
 import com.depth.quran.quran_indepth.activity.adapter.expanda_adapter;
 import com.depth.quran.quran_indepth.activity.dbhelper.DataBaseHelper;
 import com.depth.quran.quran_indepth.activity.holder.AllLetters;
 import com.depth.quran.quran_indepth.activity.holder.AllLetters_detl;
 import com.depth.quran.quran_indepth.activity.holder.Allword;
-import com.depth.quran.quran_indepth.activity.holder.test;
 import com.depth.quran.quran_indepth.activity.model.ChapterListModel;
 import com.depth.quran.quran_indepth.activity.model.word_model;
 
@@ -171,6 +170,7 @@ public class QuranDictionaryActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
     public void datalode(){
         try {
             dataBaseHelper=new DataBaseHelper(mContext, "AnalyzeQuran1");
@@ -206,8 +206,6 @@ public class QuranDictionaryActivity extends AppCompatActivity
 
                 getSupportActionBar().setTitle(" ("+select_ayat+") "+vc_ayat.get(i).getChapter_leater_enhlish());
                 txt_detailfor.setText("The word "+vc_ayat.get(i).getChapter_leater_enhlish()+" ("+select_ayat+") "+
-
-
                 vv.size()+" times,in 1 derive forms");
 //               adapetlist();
 
@@ -280,7 +278,6 @@ public class QuranDictionaryActivity extends AppCompatActivity
                 dataBaseHelper.leterayat(lete_id);
                 vc_ayat= AllLetters_detl.getleterList();
                 Toast.makeText(mContext,""+ vc_ayat.size(),Toast.LENGTH_SHORT).show();
-
                 is();
                 break;
         }
@@ -296,20 +293,20 @@ public class QuranDictionaryActivity extends AppCompatActivity
         hashMap.put(string.get(0),a);
         return hashMap;
     }
-    HashMap<String, Vector<String>> hash(Vector <word_model> vv){
-        HashMap<String, Vector<String>> hashMap = new HashMap<String, Vector<String>>();
-        ArrayList<Vector<String>>ab=new ArrayList<>();
-        int a=vv.size();
-        Vector<String>agg;
-        for (int i=0;i<a;i++){
-            dataBaseHelper.test(vv.get(i).getVerseId());
-            agg= test.getAllChapterList();
-            ab.add(agg);
-        }
-        for (int i=0;i<a;i++){
-            hashMap.put(vv.get(i).getWordAr(),ab.get(i));
-            System.out.print(";;;;;;;;;;;;;;;; "+ab.size());
-        }
-        return hashMap;
-    }
+//    HashMap<String, Vector<String>> hash(Vector <word_model> vv){
+//        HashMap<String, Vector<String>> hashMap = new HashMap<String, Vector<String>>();
+//        ArrayList<Vector<String>>ab=new ArrayList<>();
+//        int a=vv.size();
+//        Vector<String>agg;
+//        for (int i=0;i<a;i++){
+//            dataBaseHelper.test(vv.get(i).getVerseId());
+//            agg= test.getAllChapterList();
+//            ab.add(agg);
+//        }
+//        for (int i=0;i<a;i++){
+//            hashMap.put(vv.get(i).getWordAr(),ab.get(i));
+//            System.out.print(";;;;;;;;;;;;;;;; "+ab.size());
+//        }
+//        return hashMap;
+//    }
 }

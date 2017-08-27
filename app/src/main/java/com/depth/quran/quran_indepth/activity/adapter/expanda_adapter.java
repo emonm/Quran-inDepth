@@ -2,13 +2,14 @@ package com.depth.quran.quran_indepth.activity.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.text.Spannable;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.depth.quran.quran_indepth.R;
 import com.depth.quran.quran_indepth.activity.dbhelper.DataBaseHelper;
@@ -18,6 +19,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by DAFFODIL on 8/23/2017.
@@ -133,7 +136,20 @@ public class expanda_adapter extends BaseExpandableListAdapter {
 
         // Getting child text
         final String childText = (String) getChild(i, i1);
+        String machword=child.get(this.header.get(i)).get(
+                i1).getWordAr();
+
         String headerTitle=dataBaseHelper.word_details(childText);
+
+
+
+//        headerTitle = "I love you so much";
+//        machword = "love";
+        Pattern word = Pattern.compile(machword);
+        Matcher match = word.matcher(headerTitle);
+
+        String a=null;
+
 
 
         // Inflating child layout and setting textview
@@ -148,7 +164,14 @@ public class expanda_adapter extends BaseExpandableListAdapter {
         TextView txt_cp_name = (TextView) view.findViewById(R.id.txt_cp_name);
         TextView txt_cp_no = (TextView) view.findViewById(R.id.txt_cp_no);
 
-        child_text.setText(headerTitle);
+        child_text.setText(headerTitle, TextView.BufferType.SPANNABLE);
+
+        Spannable s = (Spannable)child_text.getText();
+        while (match.find()) {
+            s.setSpan(new ForegroundColorSpan(0xFFFF0000), match.start(), (match.end()-1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        }
+
         txt_mining.setText(child.get(this.header.get(i)).get(i1).getMeaningEng());
         txt_cp_name.setText(dataBaseHelper.searchchap(child.get(this.header.get(i)).get(i1).getWordChapterId()));
         txt_cp_no.setText(child.get(this.header.get(i)).get(i1).getWordChapterId()+":"+
