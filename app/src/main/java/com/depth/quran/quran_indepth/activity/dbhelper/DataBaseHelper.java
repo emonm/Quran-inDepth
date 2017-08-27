@@ -49,7 +49,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-
     public void createdatabase() throws IOException {
         boolean dbexist = checkdatabase();
         if (dbexist) {

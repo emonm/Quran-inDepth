@@ -22,7 +22,7 @@
         </activity>
         <activity
             android:name=".activity.activity.ExplorerActivity"
-            android:label="Explorer"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.activity.QuranChapterActivity"
@@ -30,21 +30,18 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".activity.activity.QuranDetailsActivity"
-            android:label="Quran Chapters"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".activity.activity.QuranDictionaryActivity"
-            android:label="Quran Dictionary"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".activity.activity.BookmarksActivity"
             android:label="Bookmarks"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".activity.activity.StartTourActivity"
-            android:label="Start Tour"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" /><![CDATA[
         >
+        ]]>
         <activity
             android:name=".activity.activity.AboutActivity"
             android:label="About"
@@ -58,7 +55,7 @@
             android:label="Setting"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".activity.activity.AnalyzeQuranActivity"
-            android:label="Analyze quran"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

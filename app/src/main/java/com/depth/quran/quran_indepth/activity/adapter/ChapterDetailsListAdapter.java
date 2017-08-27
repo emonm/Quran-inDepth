@@ -3,6 +3,8 @@ package com.depth.quran.quran_indepth.activity.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +18,7 @@ import android.widget.Toast;
 import com.depth.quran.quran_indepth.R;
 import com.depth.quran.quran_indepth.activity.dbhelper.DataBaseHelper;
 import com.depth.quran.quran_indepth.activity.dbhelper.Database_foverate;
-import com.depth.quran.quran_indepth.activity.holder.AllChapterList;
 import com.depth.quran.quran_indepth.activity.holder.AllQuranList;
-import com.depth.quran.quran_indepth.activity.model.ChapterListModel;
 import com.depth.quran.quran_indepth.activity.model.QuranListModel;
 
 import java.util.Vector;
@@ -34,6 +34,7 @@ public class ChapterDetailsListAdapter extends ArrayAdapter<QuranListModel> {
     private Vector<QuranListModel> originalList;
     private Vector<QuranListModel> chatList;
     private CityFilter filter;
+    static boolean showTranslation;
 
     public ChapterDetailsListAdapter(Context context, int resource, Vector<QuranListModel> quranLis) {
         super(context, resource, quranLis);
@@ -76,9 +77,11 @@ public class ChapterDetailsListAdapter extends ArrayAdapter<QuranListModel> {
                 fa.insaall____(model.get(position).getChapter_id(),model.get(position).getVerseAr(),
                         model.get(position).getChapter_id()+":"+model.get(position).getChapSerialNumber());
                 Toast.makeText(mContext,""+model.get(position).getChapter_id()+":"+model.get(position).getChapSerialNumber()
-                        +"Bookmarks Added",Toast.LENGTH_SHORT).show();
+                        +" Bookmarks Added",Toast.LENGTH_SHORT).show();
             }
         });
+
+
 
         holder.share.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -60,10 +60,9 @@ public class QuranChapterActivity extends AppCompatActivity
         googlePluseLink=(ImageView)findViewById(R.id.goolge_plus);
         websiteLink=(ImageView)findViewById(R.id.website);
 
-        String names[]={"Analyze Quran","Explorer","Quran Chapters","Quran Dictionary","Bookmarks","Start Tour","About","Settings"};
+        String names[]={"Quran-in Depth","Explorer","Quran Chapters","Quran Dictionary","Bookmarks","About","Settings"};
         int images[]={R.drawable.analyze_quran,R.drawable.ic_library_books,R.drawable.ic_list,R.drawable.ic_font_download,
-                R.drawable.ic_bookmark_white_36dp,R.drawable.ic_direction,
-                R.drawable.ic_error_outline_white_36dp,R.drawable.ic_settings_white_36dp};
+                R.drawable.ic_bookmark_white_36dp, R.drawable.ic_error_outline_white_36dp,R.drawable.ic_settings_white_36dp};
 
         baseAdpterList=new BaseAdpterList(this,images,names);
         lv.setAdapter(baseAdpterList);
@@ -99,16 +98,11 @@ public class QuranChapterActivity extends AppCompatActivity
                             finish();
                         }
                         if(i==5){
-                            Intent intent=new Intent(QuranChapterActivity.this,StartTourActivity.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                        if(i==6){
                             Intent intent=new Intent(QuranChapterActivity.this,AboutActivity.class);
                             startActivity(intent);
                             finish();
                         }
-                        if(i==7){
+                        if(i==6){
                             Intent intent=new Intent(QuranChapterActivity.this,SettingActivity.class);
                             startActivity(intent);
                             finish();

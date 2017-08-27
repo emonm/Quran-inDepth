@@ -81,10 +81,9 @@ public class QuranDetailsActivity extends AppCompatActivity implements Navigatio
 
         lv=(ListView)findViewById(R.id.left_drawer);
 
-        String names[]={"Analyze Quran","Explorer","Quran Chapters","Quran Dictionary","Bookmarks","Start Tour","About","Settings"};
+        String names[]={"Quran-in Depth","Explorer","Quran Chapters","Quran Dictionary","Bookmarks","About","Settings"};
         int images[]={R.drawable.analyze_quran,R.drawable.ic_library_books,R.drawable.ic_list,R.drawable.ic_font_download,
-                R.drawable.ic_bookmark_white_36dp,R.drawable.ic_direction,
-                R.drawable.ic_error_outline_white_36dp,R.drawable.ic_settings_white_36dp};
+                R.drawable.ic_bookmark_white_36dp, R.drawable.ic_error_outline_white_36dp,R.drawable.ic_settings_white_36dp};
 
         baseAdpterList=new BaseAdpterList(this,images,names);
         lv.setAdapter(baseAdpterList);
@@ -116,14 +115,10 @@ public class QuranDetailsActivity extends AppCompatActivity implements Navigatio
                             startActivity(intent);
                         }
                         if(i==5){
-                            Intent intent=new Intent(QuranDetailsActivity.this,StartTourActivity.class);
-                            startActivity(intent);
-                        }
-                        if(i==6){
                             Intent intent=new Intent(QuranDetailsActivity.this,AboutActivity.class);
                             startActivity(intent);
                         }
-                        if(i==7){
+                        if(i==6){
                             Intent intent=new Intent(QuranDetailsActivity.this,SettingActivity.class);
                             startActivity(intent);
                         }
@@ -267,9 +262,9 @@ public class QuranDetailsActivity extends AppCompatActivity implements Navigatio
             mylist.add(vc.get(i).getChapter_arabic());
         }
         // Application of the Array to the Spinner
-         spinnerArrayAdapter = new ArrayAdapter<String>(mContext,R.layout.spinner_item, mylist);
+         spinnerArrayAdapter = new ArrayAdapter<String>(mContext,R.layout.spineer_lst, mylist);
 
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spineer_lst);
         // The drop down view
         spinner.setAdapter(spinnerArrayAdapter);
         spinnerArrayAdapter.notifyDataSetChanged();

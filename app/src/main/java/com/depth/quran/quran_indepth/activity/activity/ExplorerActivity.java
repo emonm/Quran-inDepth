@@ -68,7 +68,6 @@ public class ExplorerActivity extends AppCompatActivity
     TextView txt_chapter_title;
     String a="";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,10 +82,9 @@ public class ExplorerActivity extends AppCompatActivity
         googlePluseLink=(ImageView)findViewById(R.id.goolge_plus);
         websiteLink=(ImageView)findViewById(R.id.website);
 
-        String names[]={"Analyze Quran","Explorer","Quran Chapters","Quran Dictionary","Bookmarks","Start Tour","About","Settings"};
+        String names[]={"Quran-in Depth","Explorer","Quran Chapters","Quran Dictionary","Bookmarks","About","Settings"};
         int images[]={R.drawable.analyze_quran,R.drawable.ic_library_books,R.drawable.ic_list,R.drawable.ic_font_download,
-                R.drawable.ic_bookmark_white_36dp,R.drawable.ic_direction,
-                R.drawable.ic_error_outline_white_36dp,R.drawable.ic_settings_white_36dp};
+                R.drawable.ic_bookmark_white_36dp, R.drawable.ic_error_outline_white_36dp,R.drawable.ic_settings_white_36dp};
 
         baseAdpterList=new BaseAdpterList(this,images,names);
         lv.setAdapter(baseAdpterList);
@@ -115,14 +113,10 @@ public class ExplorerActivity extends AppCompatActivity
                     startActivity(intent);
                 }
                 if(i==5){
-                    Intent intent=new Intent(ExplorerActivity.this,StartTourActivity.class);
-                    startActivity(intent);
-                }
-                if(i==6){
                     Intent intent=new Intent(ExplorerActivity.this,AboutActivity.class);
                     startActivity(intent);
                 }
-                if(i==7){
+                if(i==6){
                     Intent intent=new Intent(ExplorerActivity.this,SettingActivity.class);
                     startActivity(intent);
                 }
@@ -218,15 +212,7 @@ public class ExplorerActivity extends AppCompatActivity
         }
 
         else {
-//            quran_id = "1";
-//            name = "The Opening";
-//            arabic_name = "الْفَاتِحَة";
-//            verses = "";
-//            rukus = "1";
-//            relevation = "5";
-//            parah ="0";
-//            sajda_count = "- -";
-//            dataBaseHelper.caper_details(quran_id);
+
         }
     }
 
@@ -384,7 +370,7 @@ public class ExplorerActivity extends AppCompatActivity
             mylist.add(vc.get(i).getChapter_arabic());
         }
         // Application of the Array to the Spinner
-        spinnerArrayAdapter = new ArrayAdapter<String>(mContext,R.layout.spinner_item, mylist);
+        spinnerArrayAdapter = new ArrayAdapter<String>(mContext,R.layout.spineer_lst, mylist);
 
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinner.setAdapter(spinnerArrayAdapter);

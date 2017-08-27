@@ -1,5 +1,6 @@
 package com.depth.quran.quran_indepth.activity.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,16 +15,19 @@ import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.depth.quran.quran_indepth.R;
 import com.depth.quran.quran_indepth.activity.adapter.BaseAdpterList;
+import com.depth.quran.quran_indepth.activity.dbhelper.DataBaseHelper;
 
 public class SettingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     ListView lv;
     BaseAdpterList baseAdpterList;
+    DataBaseHelper dataBaseHelper;
+    static boolean showTranslation;
     Switch aSwitch;
+    Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +37,11 @@ public class SettingActivity extends AppCompatActivity
 
         aSwitch=(Switch)findViewById(R.id.TranslationSwitch);
         lv=(ListView)findViewById(R.id.left_drawer);
+        mContext=this;
 
-        String names[]={"Analyze Quran","Explorer","Quran Chapters","Quran Dictionary","Bookmarks","Start Tour","About","Settings"};
+        String names[]={"Quran-in Depth","Explorer","Quran Chapters","Quran Dictionary","Bookmarks","About","Settings"};
         int images[]={R.drawable.analyze_quran,R.drawable.ic_library_books,R.drawable.ic_list,R.drawable.ic_font_download,
-                R.drawable.ic_bookmark_white_36dp,R.drawable.ic_direction,
-                R.drawable.ic_error_outline_white_36dp,R.drawable.ic_settings_white_36dp};
+                R.drawable.ic_bookmark_white_36dp,R.drawable.ic_error_outline_white_36dp,R.drawable.ic_settings_white_36dp};
 
         baseAdpterList=new BaseAdpterList(this,images,names);
         lv.setAdapter(baseAdpterList);
@@ -66,14 +70,10 @@ public class SettingActivity extends AppCompatActivity
                     startActivity(intent);
                 }
                 if(i==5){
-                    Intent intent=new Intent(SettingActivity.this,StartTourActivity.class);
-                    startActivity(intent);
-                }
-                if(i==6){
                     Intent intent=new Intent(SettingActivity.this,AboutActivity.class);
                     startActivity(intent);
                 }
-                if(i==7){
+                if(i==6){
                     Intent intent=new Intent(SettingActivity.this,SettingActivity.class);
                     startActivity(intent);
                 }
@@ -93,11 +93,13 @@ public class SettingActivity extends AppCompatActivity
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean ifCleaked) {
+
+
                 if(ifCleaked){
 
                 }
                 else {
-                    Toast.makeText(getApplicationContext(),"off",Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
