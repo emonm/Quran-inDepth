@@ -121,6 +121,7 @@ public class SettingActivity extends AppCompatActivity
             super.onBackPressed();
         }
         this.startActivity(new Intent(SettingActivity.this,ExplorerActivity.class));
+        finish();
     }
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

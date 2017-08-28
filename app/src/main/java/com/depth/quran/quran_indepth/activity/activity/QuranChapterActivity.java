@@ -184,7 +184,7 @@ public class QuranChapterActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent = new Intent(mContext, QuranDetailsActivity.class);
+                Intent intent = new Intent(mContext, QuranChapterArabicActivity.class);
                 ChapterListModel model_list = AllChapterList.getChapterList(position);
                 String ida = model_list.getChapter_id().toString();
                 String name = model_list.getChapter_english();
@@ -205,6 +205,7 @@ public class QuranChapterActivity extends AppCompatActivity
                 intent.putExtra("sajda", sajda);
 
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -218,6 +219,7 @@ public class QuranChapterActivity extends AppCompatActivity
             super.onBackPressed();
         }
         this.startActivity(new Intent(QuranChapterActivity.this,ExplorerActivity.class));
+        finish();
     }
 
     @Override
@@ -258,7 +260,6 @@ public class QuranChapterActivity extends AppCompatActivity
     public boolean onQueryTextChange(String newText) {
 
         mChapterListAdapter.getFilter().filter(newText.toString());
-
         return true;
     }
 

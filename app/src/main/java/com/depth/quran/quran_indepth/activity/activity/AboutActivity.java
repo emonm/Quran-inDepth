@@ -141,6 +141,7 @@ public class AboutActivity extends AppCompatActivity
             super.onBackPressed();
         }
         this.startActivity(new Intent(AboutActivity.this,ExplorerActivity.class));
+        finish();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

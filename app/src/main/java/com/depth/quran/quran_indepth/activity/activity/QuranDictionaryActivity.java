@@ -261,6 +261,8 @@ public class QuranDictionaryActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+        this.startActivity(new Intent(QuranDictionaryActivity.this,ExplorerActivity.class));
+        finish();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

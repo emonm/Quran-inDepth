@@ -232,6 +232,7 @@ public class ExplorerActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+        finish();
     }
 
     @Override

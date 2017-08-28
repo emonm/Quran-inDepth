@@ -157,6 +157,7 @@ public class BookmarksActivity extends AppCompatActivity
             super.onBackPressed();
         }
         this.startActivity(new Intent(BookmarksActivity.this,ExplorerActivity.class));
+        finish();
     }
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

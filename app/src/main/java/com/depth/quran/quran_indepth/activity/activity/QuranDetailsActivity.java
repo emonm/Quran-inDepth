@@ -188,6 +188,7 @@ public class QuranDetailsActivity extends AppCompatActivity implements Navigatio
         } else {
             super.onBackPressed();
         }
+        this.startActivity(new Intent(QuranDetailsActivity.this,QuranChapterActivity.class));
         finish();
     }
 

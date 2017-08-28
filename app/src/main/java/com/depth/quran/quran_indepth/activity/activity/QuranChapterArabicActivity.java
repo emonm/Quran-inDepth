@@ -15,8 +15,10 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,16 +26,21 @@ import com.depth.quran.quran_indepth.R;
 import com.depth.quran.quran_indepth.activity.adapter.BaseAdpterList;
 import com.depth.quran.quran_indepth.activity.adapter.ChapterArabicDetailsListAdapter;
 import com.depth.quran.quran_indepth.activity.dbhelper.DataBaseHelper;
+import com.depth.quran.quran_indepth.activity.holder.AllChapterList;
 import com.depth.quran.quran_indepth.activity.holder.AllQuranList;
+import com.depth.quran.quran_indepth.activity.model.ChapterListModel;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Vector;
 
 public class QuranChapterArabicActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener ,AdapterView.OnItemSelectedListener{
 
     Context mContext;
     DataBaseHelper dataBaseHelper;
-
+    Vector<ChapterListModel> vc;
+    Spinner spinner;
     TextView txt_chapter_name, txt_verses, txt_rukus, txt_relevation,
             txt_parah, txt_serail_num, txt_arabic, txt_sajda;
     String name;
@@ -46,6 +53,9 @@ public class QuranChapterArabicActivity extends AppCompatActivity
     ListView lv;
     BaseAdpterList baseAdpterList;
     ImageView facebookLink,youtubeLink,googlePluseLink,websiteLink;
+    ImageView image_makki;
+    TextView txtmakki_madani;
+    ArrayAdapter<String> spinnerArrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,7 +170,7 @@ public class QuranChapterArabicActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         datalode();
-
+        quranSpineer();
         initUI();
     }
 
@@ -174,18 +184,8 @@ public class QuranChapterArabicActivity extends AppCompatActivity
         txt_relevation = (TextView) this.findViewById(R.id.Revelation_number);
         txt_parah = (TextView) this.findViewById(R.id.parah_number);
         txt_sajda = (TextView) this.findViewById(R.id.sajda_number);
-        txt_serail_num.setText("" + quran_id);
-        txt_chapter_title.setText("" + name);
-        txt_arabic.setText("" + arabic_name);
-        txt_verses.setText("" + verses);
-        txt_rukus.setText("" + rukus);
-        txt_relevation.setText("" + relevation);
-        txt_parah.setText("" + parah);
-        txt_sajda.setText("" + sajda_count);
-        chapterArabicDetailsListAdapter = new ChapterArabicDetailsListAdapter(mContext, R.layout.row_arabic_chpater_details, AllQuranList.getAllQuranList());
-        ListView listView = (ListView) this.findViewById(R.id.list_quran);
-        listView.setAdapter(chapterArabicDetailsListAdapter);
-        chapterArabicDetailsListAdapter.notifyDataSetChanged();
+        image_makki=(ImageView)this.findViewById(R.id.img_mac);
+        txtmakki_madani=(TextView)this.findViewById(R.id.txt_arabic_mac);
 
     }
 
@@ -218,6 +218,7 @@ public class QuranChapterArabicActivity extends AppCompatActivity
             super.onBackPressed();
         }
         this.startActivity(new Intent(QuranChapterArabicActivity.this,ExplorerActivity.class));
+        finish();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -227,4 +228,87 @@ public class QuranChapterArabicActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private void quranSpineer(){
+        spinner = (Spinner)findViewById(R.id.spineer_arb);
+
+        ArrayList<String> mylist = new ArrayList<String>();
+        //        AllLetters all=new AllLetters();
+        vc= AllChapterList.getAllChapterList();
+
+        for (int i=0;i<vc.size();i++){
+            mylist.add(vc.get(i).getChapter_arabic());
+        }
+        // Application of the Array to the Spinner
+        spinnerArrayAdapter = new ArrayAdapter<String>(mContext,R.layout.spineer_lst, mylist);
+
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spineer_lst);
+        // The drop down view
+        spinner.setAdapter(spinnerArrayAdapter);
+        spinnerArrayAdapter.notifyDataSetChanged();
+        spinner.setOnItemSelectedListener(this);
+
+    }
+
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+        ChapterListModel model_list = AllChapterList.getChapterList(i);
+        quran_id = model_list.getChapter_id().toString();
+        name = model_list.getChapter_english();
+//        Log.w("English Name:",name);
+        verses = model_list.getVerses().toString();
+        rukus = model_list.getRuku_Count();
+        relevation = model_list.getRevelation_Number().toString();
+        parah = model_list.getParas();
+        sajda_count = model_list.getSajdaVerses();
+        arabic_name = model_list.getChapter_arabic();
+
+        System.out.println("ddddddddddd  "+sajda_count);
+
+        dataBaseHelper.lodetoexplorae(quran_id,name,arabic_name,verses,rukus,relevation,parah,sajda_count);
+        dataBaseHelper.caper_details(quran_id);
+
+        txt_serail_num.setText("" + quran_id);
+        txt_chapter_title.setText("" + name);
+        txt_arabic.setText("" + arabic_name);
+        txt_verses.setText("" + verses);
+        txt_rukus.setText("" + rukus);
+        txt_relevation.setText("" + relevation);
+        txt_parah.setText("" + parah);
+        txt_sajda.setText("" + sajda_count);
+
+
+        if (model_list.getIsMakki().equals("0")){
+            image_makki.setImageResource(R.drawable.madina_image);
+            txtmakki_madani.setText("Madani");
+        }else {
+            image_makki.setImageResource(R.drawable.makkah_image);
+            txtmakki_madani.setText("Makki");
+        }
+        if (sajda_count.equals("null")) {
+            txt_sajda.setText("- -");
+        }else {
+            txt_sajda.setText("" + sajda_count);
+        }
+        chapterArabicDetailsListAdapter = new ChapterArabicDetailsListAdapter(mContext, R.layout.row_arabic_chpater_details, AllQuranList.getAllQuranList());
+        ListView listView = (ListView) this.findViewById(R.id.list_quran);
+        listView.setAdapter(chapterArabicDetailsListAdapter);
+        chapterArabicDetailsListAdapter.notifyDataSetChanged();
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        spinner.setSelection(Integer.parseInt(quran_id)-1);
+    }
 }
+
+
+
