@@ -3,6 +3,8 @@ package com.depth.quran.quran_indepth.activity.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.depth.quran.quran_indepth.R;
+import com.depth.quran.quran_indepth.activity.Config;
 import com.depth.quran.quran_indepth.activity.dbhelper.DataBaseHelper;
 import com.depth.quran.quran_indepth.activity.dbhelper.Database_foverate;
 import com.depth.quran.quran_indepth.activity.holder.AllChapterList;
@@ -34,6 +37,7 @@ public class ChapterDetailsListAdapter extends ArrayAdapter<QuranListModel> {
     private Vector<QuranListModel> originalList;
     private Vector<QuranListModel> chatList;
     private CityFilter filter;
+    static boolean showTranslation;
 
     public ChapterDetailsListAdapter(Context context, int resource, Vector<QuranListModel> quranLis) {
         super(context, resource, quranLis);
@@ -43,6 +47,8 @@ public class ChapterDetailsListAdapter extends ArrayAdapter<QuranListModel> {
         this.chatList.addAll(quranLis);
         this.originalList.addAll(quranLis);
         this.mContext = context;
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        showTranslation = sharedPreferences.getBoolean(Config.SHOW_TRANSLATION, Config.defaultShowTranslation);
 
     }
 
@@ -79,6 +85,8 @@ public class ChapterDetailsListAdapter extends ArrayAdapter<QuranListModel> {
                         +"Bookmarks Added",Toast.LENGTH_SHORT).show();
             }
         });
+
+
 
         holder.share.setOnClickListener(new View.OnClickListener() {
             @Override

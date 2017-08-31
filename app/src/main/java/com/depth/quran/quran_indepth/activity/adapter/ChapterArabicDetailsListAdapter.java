@@ -2,6 +2,8 @@ package com.depth.quran.quran_indepth.activity.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,10 +42,13 @@ public class ChapterArabicDetailsListAdapter extends ArrayAdapter<QuranListModel
             holder.ChapSerialNumber = (TextView) convertView.findViewById(R.id.chap_Serial_Number);
             holder.VerseAr = (TextView) convertView.findViewById(R.id.txt_Verse_Ar);
             holder.bookmarh=(ImageView)convertView.findViewById(R.id.bookmarhArabic);
+            holder.share=(ImageView)convertView.findViewById(R.id.ic_share);
 
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
+
+
         }
         final Vector<QuranListModel> model = AllQuranList.getAllQuranList();
         holder.VerseAr.setText(model.get(position).getVerseAr());
@@ -56,7 +61,22 @@ public class ChapterArabicDetailsListAdapter extends ArrayAdapter<QuranListModel
                 fa.insaall____(model.get(position).getChapter_id(),model.get(position).getVerseAr(),
                         model.get(position).getChapter_id()+":"+model.get(position).getChapSerialNumber());
                 Toast.makeText(mContext,""+model.get(position).getChapter_id()+":"+model.get(position).getChapSerialNumber()
-                        +"Bookmarks Added",Toast.LENGTH_SHORT).show();
+                        +" Bookmarks Added",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.w("shaire", "intent are" + AllQuranList.getQuranlist(position).getVerseAr());
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(android.content.Intent.EXTRA_TEXT,
+                        AllQuranList.getQuranlist(position).getChapSerialNumber()
+                                +"\n"
+                                + AllQuranList.getQuranlist(position).getVerseAr());
+                mContext.startActivity(shareIntent);
             }
         });
         return convertView;
@@ -64,6 +84,6 @@ public class ChapterArabicDetailsListAdapter extends ArrayAdapter<QuranListModel
     class ViewHolder {
         TextView ChapSerialNumber;
         TextView VerseAr;
-        ImageView bookmarh;
+        ImageView bookmarh,share;
     }
 }

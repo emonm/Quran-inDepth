@@ -49,7 +49,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-
     public void createdatabase() throws IOException {
         boolean dbexist = checkdatabase();
         if (dbexist) {
@@ -267,6 +266,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 
     public void chapter_arabic_details(String capter) {
+        AllQuranList.removeallQuranlist();
         String sqlTables = " Verses ";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + sqlTables + " where " + " ChapterId =" + capter, null);

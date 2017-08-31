@@ -1,9 +1,9 @@
 package com.depth.quran.quran_indepth.activity.activity;
 
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+        import android.os.Bundle;
 
-import com.depth.quran.quran_indepth.R;
+        import com.depth.quran.quran_indepth.R;
 
 public class StartTourActivity extends AppCompatActivity {
 

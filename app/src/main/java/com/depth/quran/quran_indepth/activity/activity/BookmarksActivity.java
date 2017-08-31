@@ -4,8 +4,10 @@ package com.depth.quran.quran_indepth.activity.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,6 +15,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,10 +23,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.depth.quran.quran_indepth.R;
+import com.depth.quran.quran_indepth.activity.Config;
 import com.depth.quran.quran_indepth.activity.adapter.BaseAdpterList;
 import com.depth.quran.quran_indepth.activity.adapter.Fevoreat_ListAdapter;
 import com.depth.quran.quran_indepth.activity.dbhelper.Database_foverate;
+import com.depth.quran.quran_indepth.activity.holder.AllChapterList;
 import com.depth.quran.quran_indepth.activity.holder.All_Foveratlit;
+import com.depth.quran.quran_indepth.activity.model.ChapterListModel;
 import com.depth.quran.quran_indepth.activity.model.foverat_model;
 
 import java.util.Vector;
@@ -62,12 +68,102 @@ public class BookmarksActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i==0){
-                    Intent intent=new Intent(BookmarksActivity.this,AnalyzeQuranActivity.class);
-                    startActivity(intent);
+                    boolean showTranslation;
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(BookmarksActivity.this);
+                    showTranslation = sharedPreferences.getBoolean(Config.SHOW_TRANSLATION, false);
+                    if (showTranslation) {
+                        Intent intent = new Intent(BookmarksActivity.this, QuranDetailsActivity.class);
+                        ChapterListModel model_list = AllChapterList.getChapterList(0);
+                        String ida = model_list.getChapter_id().toString();
+                        String name = model_list.getChapter_english();
+                        Log.w("English Name:", name);
+                        String verses = model_list.getVerses().toString();
+                        String rukus = model_list.getRuku_Count();
+                        String relevation = model_list.getRevelation_Number().toString();
+                        String parah = model_list.getParas();
+                        String sajda = model_list.getSajdaVerses();
+                        String chapterAraic = model_list.getChapter_arabic();
+                        intent.putExtra("id", ida);
+                        intent.putExtra("title", name);
+                        intent.putExtra("aravic", chapterAraic);
+                        intent.putExtra("verses", verses);
+                        intent.putExtra("rukus", rukus);
+                        intent.putExtra("relevation", relevation);
+                        intent.putExtra("parah", parah);
+                        intent.putExtra("sajda", sajda);
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(BookmarksActivity.this, QuranChapterArabicActivity.class);
+                        ChapterListModel model_list = AllChapterList.getChapterList(0);
+                        String ida = model_list.getChapter_id().toString();
+                        String name = model_list.getChapter_english();
+                        Log.w("English Name:", name);
+                        String verses = model_list.getVerses().toString();
+                        String rukus = model_list.getRuku_Count();
+                        String relevation = model_list.getRevelation_Number().toString();
+                        String parah = model_list.getParas();
+                        String sajda = model_list.getSajdaVerses();
+                        String chapterAraic = model_list.getChapter_arabic();
+                        intent.putExtra("id", ida);
+                        intent.putExtra("title", name);
+                        intent.putExtra("aravic", chapterAraic);
+                        intent.putExtra("verses", verses);
+                        intent.putExtra("rukus", rukus);
+                        intent.putExtra("relevation", relevation);
+                        intent.putExtra("parah", parah);
+                        intent.putExtra("sajda", sajda);
+
+                        startActivity(intent);
+                    }
                 }
                 if(i==1){
-                    Intent intent=new Intent(BookmarksActivity.this,ExplorerActivity.class);
-                    startActivity(intent);
+                    boolean showTranslation;
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(BookmarksActivity.this);
+                    showTranslation = sharedPreferences.getBoolean(Config.SHOW_TRANSLATION, false);
+                    if (showTranslation) {
+                        Intent intent = new Intent(BookmarksActivity.this, QuranDetailsActivity.class);
+                        ChapterListModel model_list = AllChapterList.getChapterList(0);
+                        String ida = model_list.getChapter_id().toString();
+                        String name = model_list.getChapter_english();
+                        Log.w("English Name:", name);
+                        String verses = model_list.getVerses().toString();
+                        String rukus = model_list.getRuku_Count();
+                        String relevation = model_list.getRevelation_Number().toString();
+                        String parah = model_list.getParas();
+                        String sajda = model_list.getSajdaVerses();
+                        String chapterAraic = model_list.getChapter_arabic();
+                        intent.putExtra("id", ida);
+                        intent.putExtra("title", name);
+                        intent.putExtra("aravic", chapterAraic);
+                        intent.putExtra("verses", verses);
+                        intent.putExtra("rukus", rukus);
+                        intent.putExtra("relevation", relevation);
+                        intent.putExtra("parah", parah);
+                        intent.putExtra("sajda", sajda);
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(BookmarksActivity.this, QuranChapterArabicActivity.class);
+                        ChapterListModel model_list = AllChapterList.getChapterList(0);
+                        String ida = model_list.getChapter_id().toString();
+                        String name = model_list.getChapter_english();
+                        Log.w("English Name:", name);
+                        String verses = model_list.getVerses().toString();
+                        String rukus = model_list.getRuku_Count();
+                        String relevation = model_list.getRevelation_Number().toString();
+                        String parah = model_list.getParas();
+                        String sajda = model_list.getSajdaVerses();
+                        String chapterAraic = model_list.getChapter_arabic();
+                        intent.putExtra("id", ida);
+                        intent.putExtra("title", name);
+                        intent.putExtra("aravic", chapterAraic);
+                        intent.putExtra("verses", verses);
+                        intent.putExtra("rukus", rukus);
+                        intent.putExtra("relevation", relevation);
+                        intent.putExtra("parah", parah);
+                        intent.putExtra("sajda", sajda);
+
+                        startActivity(intent);
+                    }
                 }
                 if(i==2){
                     Intent intent=new Intent(BookmarksActivity.this,QuranChapterActivity.class);
