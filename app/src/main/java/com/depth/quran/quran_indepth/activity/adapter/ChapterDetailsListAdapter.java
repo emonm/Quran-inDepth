@@ -19,9 +19,7 @@ import com.depth.quran.quran_indepth.R;
 import com.depth.quran.quran_indepth.activity.Config;
 import com.depth.quran.quran_indepth.activity.dbhelper.DataBaseHelper;
 import com.depth.quran.quran_indepth.activity.dbhelper.Database_foverate;
-import com.depth.quran.quran_indepth.activity.holder.AllChapterList;
 import com.depth.quran.quran_indepth.activity.holder.AllQuranList;
-import com.depth.quran.quran_indepth.activity.model.ChapterListModel;
 import com.depth.quran.quran_indepth.activity.model.QuranListModel;
 
 import java.util.Vector;
@@ -82,7 +80,7 @@ public class ChapterDetailsListAdapter extends ArrayAdapter<QuranListModel> {
                 fa.insaall____(model.get(position).getChapter_id(),model.get(position).getVerseAr(),
                         model.get(position).getChapter_id()+":"+model.get(position).getChapSerialNumber());
                 Toast.makeText(mContext,""+model.get(position).getChapter_id()+":"+model.get(position).getChapSerialNumber()
-                        +"Bookmarks Added",Toast.LENGTH_SHORT).show();
+                        +" Bookmarks Added",Toast.LENGTH_SHORT).show();
             }
         });
 

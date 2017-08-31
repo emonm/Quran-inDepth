@@ -69,67 +69,87 @@
                     android:layout_weight="1.0"
                     android:orientation="horizontal">
 
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5"
+                        android:layout_gravity="center"
+                        android:gravity="center">
+
                     <ImageView
                         android:id="@+id/image_makki"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="13dp"
+
                         android:src="@drawable/makkah_image"
                         android:tint="@color/colorToolBar" />
 
+                    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center">
                     <TextView
                         android:id="@+id/textView3"
-                        android:layout_width="40dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="37dp"
-                        android:layout_marginTop="8dp"
+
+
                         android:text="Serial:"
                         android:textColor="@color/colorToolBar"
                         android:textSize="13sp" />
-
                     <TextView
                         android:id="@+id/Serail_number"
-                        android:layout_width="30dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:textColor="@color/colorToolBar"
                         android:textSize="13sp" />
+                </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="14dp"
-                        android:layout_marginTop="8dp"
                         android:text="Verses:"
                         android:textColor="@color/colorToolBar"
                         android:textSize="13sp" />
 
                     <TextView
                         android:id="@+id/verses_number"
-                        android:layout_width="30dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginTop="8dp"
+
                         android:textColor="@color/colorToolBar"
                         android:textSize="13sp" />
+                </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center">
                     <TextView
                         android:layout_width="40dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:text="Rukus:"
-                        android:layout_marginLeft="10dp"
                         android:textColor="@color/colorToolBar"
                         android:textSize="13sp" />
 
                     <TextView
                         android:id="@+id/rukus_number"
-                        android:layout_width="30dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="3dp"
                         android:textColor="@color/colorToolBar"
                         android:textSize="13sp" />
+                </LinearLayout>
                 </LinearLayout>
 
 
@@ -146,34 +166,51 @@
                     android:layout_weight="1.0"
                     android:orientation="horizontal">
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:layout_gravity="center"
+                    android:gravity="center">
                     <TextView
                         android:id="@+id/txtmakki_madani"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:text="Makki"
                         android:textColor="@color/colorToolBar"
                         android:textSize="13sp" />
-
+                    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center">
                     <TextView
                         android:id="@+id/textView2"
-                        android:layout_width="67dip"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="23dp"
+
                         android:text="Revelation:"
                         android:textColor="@color/colorToolBar"
                         android:textSize="13sp" />
 
                     <TextView
                         android:id="@+id/Revelation_number"
-                        android:layout_width="30dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="2dp"
                         android:textColor="@color/colorToolBar"
                         android:textSize="13sp" />
 
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center">
                     <TextView
-                        android:layout_width="40dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Parah:"
                         android:textColor="@color/colorToolBar"
@@ -181,12 +218,18 @@
 
                     <TextView
                         android:id="@+id/parah_number"
-                        android:layout_width="40dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="4dp"
                         android:textColor="@color/colorToolBar"
                         android:textSize="13sp" />
+                </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -196,11 +239,11 @@
 
                     <TextView
                         android:id="@+id/sajda_number"
-                        android:layout_width="30dp"
-                        android:layout_marginLeft="3dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorToolBar"
                         android:textSize="13sp" />
+                </LinearLayout>
                 </LinearLayout>
             </TableRow>
         </TableLayout>
